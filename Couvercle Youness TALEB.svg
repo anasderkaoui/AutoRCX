@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg2213"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="Corps 2 Final.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2215"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0074671"
+     inkscape:cx="351.87253"
+     inkscape:cy="405.96859"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2210">
+    <linearGradient
+       id="linearGradient3301"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3299" />
+    </linearGradient>
+    <rect
+       x="176.68072"
+       y="408.94638"
+       width="173.70295"
+       height="32.755414"
+       id="rect2396" />
+    <rect
+       x="176.68072"
+       y="408.94638"
+       width="173.70295"
+       height="32.755414"
+       id="rect2817" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3301"
+       id="linearGradient3303"
+       x1="175.94774"
+       y1="415.53585"
+       x2="287.38429"
+       y2="415.53585"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.101893;paint-order:fill markers stroke"
+       id="rect2334"
+       width="77.534508"
+       height="57.298103"
+       x="30.050947"
+       y="85.054352" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.113557;paint-order:fill markers stroke"
+       id="rect2336"
+       width="59.247807"
+       height="3.6031721"
+       x="43.228191"
+       y="87.831535" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.0969433;paint-order:fill markers stroke"
+       id="rect2338"
+       width="48.842392"
+       height="3.6030567"
+       x="53.310802"
+       y="135.51158" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.07279;paint-order:fill markers stroke"
+       id="rect2340"
+       width="5.72721"
+       height="8.1672096"
+       x="98.732384"
+       y="105.89115" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,8.6665365,3.1514678)"
+       id="text2815"
+       style="white-space:pre;shape-inside:url(#rect2817);display:inline;fill:url(#linearGradient3303);fill-opacity:1;stroke:#000000;stroke-width:0.377953;paint-order:fill markers stroke"><tspan
+         x="176.68164"
+         y="419.89523"
+         id="tspan337"><tspan
+           style="font-style:italic;font-weight:bold;font-size:12px;-inkscape-font-specification:'sans-serif, Bold Italic'"
+           id="tspan335">ARDUINO ROB 3</tspan></tspan></text>
+  </g>
+</svg>
