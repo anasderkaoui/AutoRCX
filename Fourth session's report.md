@@ -26,3 +26,6 @@ The DC motor had no gears attached to the end that would turn the gear on the fr
 
 ![DC motor driver](https://user-images.githubusercontent.com/115218309/202006186-419202b3-064c-46c9-b8f3-a0e23ebd7b1c.jpg)
 ![Wheels](https://user-images.githubusercontent.com/115218309/202003906-58af2f96-33ea-4e0c-9130-a9d3dd7fe724.jpg)
+![IMG-20221116-WA0008](https://user-images.githubusercontent.com/115218309/202308569-a449c4e3-c2a8-4595-8700-a638d814d4fe.jpg)
+![IMG-20221116-WA0010](https://user-images.githubusercontent.com/115218309/202308579-028e2fbb-4e4f-4363-94f3-2671419e5214.jpg)
+![IMG-20221116-WA0011](https://user-images.githubusercontent.com/115218309/202308581-96df6d47-a117-460f-8809-806ba22bd0ee.jpg)
