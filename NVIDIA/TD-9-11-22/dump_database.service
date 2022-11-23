@@ -1,0 +1,7 @@
+[Unit]
+Description=Start database backup by executing dump_database
+
+[Service]
+WorkingDirectory=/home
+Type=simple
+ExecStart=/home/dump_database.sh
