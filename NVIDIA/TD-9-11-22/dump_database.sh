@@ -10,7 +10,7 @@ dump_database="backupclassicmodels_${day}".bz2 #creates a file named backupcla..
 
 echo "dump_database.sh started at ${day}" >> /var/log/dump-mysql.log #stores the output of "echo" in the logfile "dump-mysql.log"
 
-sudo mysqldump -uanas --password --no-tablespaces classicmodels | bzip2 -c > /home/database_backup/${dump_database} #stores the "classicmodels" database in the file "dump_database"
+sudo mysqldump -uanas --password --no-tablespaces classicmodels | bzip2 -c > /home/database_backup/${dump_database} #stores the "classicmodels" database in the file "dump_database" in "bz2" format
 
 echo "dump_database.sh finished at ${day}" >> /var/log/dump-mysql.log
 
