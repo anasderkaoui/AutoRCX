@@ -14,12 +14,12 @@ Setting up the service, run the follwong commands :<br />
 
 2 - A window will open, then you will add your service configuration. Type the following lines :<br />
 
-`[Unit]`
-`Description=Start database backup`
+`[Unit]`<br />
+`Description=Start database backup`<br />
 
-`[Service]`
-`WorkingDirectory=/directory`
-`Type=simple`
+`[Service]`<br />
+`WorkingDirectory=/directory`<br />
+`Type=simple`<br />
 `ExecStrat=/directory/dump-database.sh`<br />
 
 You can replace dump-database.sh by the script you want to run, but don't forget to modifiy the directory !<br />
