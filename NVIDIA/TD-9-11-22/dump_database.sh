@@ -22,4 +22,4 @@ wc -l /var/log/dump-mysql.log
 
 cd /home/database_backup && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {} #keeps only 5 recent backups
 
-#You can replace --password by -p"yourpassword for mysql", although it is not recommended and insecure.
+#You can replace --password by -p"yourpassword for mysql", although it is not recommended and is insecure.
