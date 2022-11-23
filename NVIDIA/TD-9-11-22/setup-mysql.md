@@ -1,6 +1,6 @@
 # MySQL setup
 
-## setup-mysql file :
+## How to install and run MySQL :
 
 <br />
 
