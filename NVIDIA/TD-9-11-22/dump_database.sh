@@ -20,4 +20,4 @@ echo "Number of log file lines has been set to 20"
 
 wc -l /var/log/dump-mysql.log
 
-cd /home/database_backup && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {}
+cd /home/database_backup && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {} #keeps only 5 recent backups
