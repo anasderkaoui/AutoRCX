@@ -1,12 +1,12 @@
 #!/bin/sh
 
-echo "starting database backup"
+echo "starting database backup" #displays on the terminal the quoted expression
 
 wc -l /var/log/dump-mysql.log #shows number of file lines of the file "dump-mysql.log"
 
 day="$(date +'%d-%m-%Y %H:%M:%S')"
 
-dump_database="backupclassicmodels_${day}".bz2 #creates a file named backupcla...
+dump_database="backupclassicmodels_${day}".bz2 #creates a file named "backupclassicmodels_${day}" where the backup will be stored
 
 echo "dump_database.sh started at ${day}" >> /var/log/dump-mysql.log #stores the output of "echo" in the logfile "dump-mysql.log"
 
