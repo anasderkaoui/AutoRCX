@@ -10,7 +10,7 @@ In this session, the car is becoming to come together. During this session :
 
 image
 
-- I tried to actuate the servo motor that we placed the last session on the car, but ran into some issues. The servo's turning radius is 0 to 180 degrees, but when in the car it should not reach the extreme values because it is beyond what the car can handle. So I had two options, either change the servo's position which I tried but did not get the targeted results, or change the servo's program to only reach a certain value below the max. Therefore, I am going to choose the second option since the first one did not work out very well. The code Arduino that I modified habve now is :<br />
+- I tried to actuate the servo motor that we placed the last session on the car, but ran into some issues. The servo's turning radius is 0 to 180 degrees, but when placed on the frame it should not reach the extreme values because it is beyond what the car can handle. So I had two options, either change the servo's placement which I tried but did not get the targeted results, or change the servo's program to only reach a certain value below the max. Therefore, I am going to choose the second option since the first one did not work out very well. The Arduino code that I have now is :<br />
 
 
 `// Controlling Speed`
@@ -22,7 +22,6 @@ image
 `int servoPin = 3;`<br />
 `// Create a servo object`<br />
 `Servo Servo1;`
-
 <br />
 
 `void setup() {`<br />
@@ -31,7 +30,6 @@ image
 `  Servo1.attach(servoPin);`<br />
 
 `}`
-
 <br />
 
 `// The loop routine runs over and over again forever.`
@@ -52,9 +50,11 @@ image
 `}`
 <br />
 
-I did not get the chance to run this code on the servo but I am sure it will solve the problem.
+I did not get the chance to run this code on the servo but I am sure it will solve the problem. Here is how to wire the servo motor to the Arduino UNO card :
 
-- I found the right program for the <span style="color: green"> CYTRON MD13S DC motor driver </span> to run the DC motor. I tried it and it works very well. The Arduino program is :<br />
+<img width="413" alt="arduinohookup" src="https://user-images.githubusercontent.com/115218309/204057145-02b51535-500c-445f-bb5b-434686d63692.png">
+
+- I found the right program for the <span style="color: green"> CYTRON MD13S DC motor driver </span> to run the motor that we have. I tried it and it works very well. The Arduino program is :<br />
 
 `#include "CytronMotorDriver.h"`
 
@@ -91,4 +91,13 @@ I did not get the chance to run this code on the servo but I am sure it will sol
 
 `}`
 
-image.arduinohookup
+This is how to hook up the driver to the motor and the Arduino card :
+
+![car1](https://user-images.githubusercontent.com/115218309/204058441-67061811-326e-487a-99dd-ea400504eea1.jpg)
+
+![car1resized](https://user-images.githubusercontent.com/115218309/204057228-445fed3b-7fb5-44d7-978e-d0858f2f73ab.jpg)
+
+GND -> GND on the Arduino card <br />
+"+" and "-" (green housing on the driver) coming from the voltage generator <br />
+MA and MB (black housing on the driver) wired to the motor <br />
+In this photo, the motor was still taped to the body to see how well it will perform before proceeding to drill the holes in the frame.
