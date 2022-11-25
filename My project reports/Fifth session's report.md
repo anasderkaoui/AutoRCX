@@ -54,7 +54,8 @@ I did not get the chance to run this code on the servo but I am sure it will sol
 
 <img width="413" alt="arduinohookup" src="https://user-images.githubusercontent.com/115218309/204057145-02b51535-500c-445f-bb5b-434686d63692.png">
 
-- I found the right program for the <span style="color: green"> CYTRON MD13S DC motor driver </span> to run the motor that we have. I tried it and it works very well. The Arduino program is :<br />
+- I found the right program for the <span style="color: green"> CYTRON MD13S DC motor driver </span> to run the motor that we have. I tried it and it works very well. [CYTRON MD13S driver datasheet](https://www.robotshop.com/media/files/pdf/MD13S_User-Mannual.pdf). <br />
+The Arduino program is :<br />
 
 `#include "CytronMotorDriver.h"`
 
