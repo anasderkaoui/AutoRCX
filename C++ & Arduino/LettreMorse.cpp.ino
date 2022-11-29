@@ -1,7 +1,9 @@
-#include "LettreMorse.h"
-#include <string.h>
+//A ".cpp" file, to define the functions of the class "LettreMorse.h" that will be used to convert letters to dots and dashes according to their morse code.
 
-LettreMorse::LettreMorse(){};
+#include "LettreMorse.h"  // All the content in "LettreMorse.h" is copied in here
+#include <string.h>  // Enables us to use the function "strcpy"
+
+LettreMorse::LettreMorse(){}; 
     
 
 const char* dot=" .";
@@ -20,8 +22,8 @@ void LettreMorse::convertisseur(char lettre){
   
 if (lettre=='A'|| lettre == 'a')
 {
-strcpy(lettremodifiee," . -");
-Serial.print(lettremodifiee);
+strcpy(lettremodifiee," . -"); // "strcy" copies the quoted string to "lettremodifiee"
+Serial.print(lettremodifiee); // prints "lettremodifiee"
 }
 else if (lettre=='B'|| lettre == 'b')
 {
@@ -202,7 +204,7 @@ else if(lettre == ' ')
 {
 Serial.print("/ ");
 }
-else{
+else{ // If no character of the above has been selected
 Serial.println(" Unknown symbol! LettreMorse ");;
 }
 }
