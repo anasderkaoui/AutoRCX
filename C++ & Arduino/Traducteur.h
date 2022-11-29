@@ -14,7 +14,7 @@ class Traducteur{
     //void delay_alternative_dot();
     //void delay_alternative_dash();
     void dot(); // Translates dots to light pulses
-//     void dash();  // Translates dashes to light pulses
+    void dash();  // Translates dashes to light pulses
     
 };
 
