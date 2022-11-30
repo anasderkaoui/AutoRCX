@@ -1,14 +1,11 @@
-//A ".cpp" file, to define the functions of the class "LettreMorse.h" that will be used to convert letters to dots and dashes according to their morse code.
+//A ".cpp" file, to define the function of the class "LettreMorse.h" that will be used to convert letters and numbers to dots and dashes according to their morse code.
 
 #include "LettreMorse.h"  // All the content in "LettreMorse.h" is copied in here
 #include <string.h>  // Enables us to use the function "strcpy"
 
 LettreMorse::LettreMorse(){}; 
     
-
-const char* dot=" .";
-const char* dash="-";
-char lettremodifiee[10];
+char lettremodifiee[50]; // We chose a random number to avoid filling up the array quickly
 
 //A  .-  B -...  C -.-.  D -.. E . F ..-.
 //G --. H ....  I ..  J .---  K -.- L .-..
@@ -17,12 +14,13 @@ char lettremodifiee[10];
 //Y -.--  Z --..
 
     
-void LettreMorse::convertisseur(char lettre){
+void LettreMorse::convertisseur(char lettre){ // You could also use switch/case instead of if/else if
 
-  
+strcpy(lettremodifiee,""); // This makes sure there is no undefined character in the string "lettremodifiee"
+    
 if (lettre=='A'|| lettre == 'a')
 {
-strcpy(lettremodifiee," . -"); // "strcy" copies the quoted string to "lettremodifiee"
+strcpy(lettremodifiee," . -"); // "strcy" function copies the quoted string to "lettremodifiee", one of many options available
 Serial.print(lettremodifiee); // prints "lettremodifiee"
 }
 else if (lettre=='B'|| lettre == 'b')
@@ -202,9 +200,10 @@ Serial.print(lettremodifiee);
 }
 else if(lettre == ' ')
 {
-Serial.print("/ ");
+Serial.print(" ");
 }
 else{ // If no character of the above has been selected
-Serial.println(" Unknown symbol! LettreMorse ");;
+Serial.println(" Unknown symbol!");
 }
+strcpy(lettre,""); // This makes sure the character "lettre" is empty and will not show an undefined character, thus an unknown symbol
 }
