@@ -8,10 +8,10 @@ class LettreMorse{
   
   
   
-public: // Functions that will be used in other files
+public: // Contains the function that will translate lettres and numbers to dots and dashes, it will be defined in "LettreMorse.cpp.ino"
 
   LettreMorse();
-  void convertisseur(char lettre);
+  void convertisseur(char lettre);  // Takes a character in the input
 
 };
 
