@@ -1,4 +1,4 @@
-// This is where the characters need to be typed
+// This is where the characters need to be typed so as to translate them in morse code and blink the LED light of the Arduino UNO board accordingly
 
 #include "Traducteur.h" // Includes "Traducteur.h" that has all the needed functions for the morse code to work (including "LettreMorse.h")
 
