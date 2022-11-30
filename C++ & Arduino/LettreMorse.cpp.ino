@@ -5,8 +5,9 @@
 
 LettreMorse::LettreMorse(){}; 
     
-char lettremodifiee[50]; // We chose a random number to avoid filling up the array quickly
+char lettremodifiee[50]; // the array that will contain the translation of a character typed by the user, we chose a large number to avoid filling up the array quickly
 
+// The corresponding morse code to each letter (example)
 //A  .-  B -...  C -.-.  D -.. E . F ..-.
 //G --. H ....  I ..  J .---  K -.- L .-..
 //M --  N -.  O --- P .--.  Q --.-  R .-.
@@ -14,7 +15,7 @@ char lettremodifiee[50]; // We chose a random number to avoid filling up the arr
 //Y -.--  Z --..
 
     
-void LettreMorse::convertisseur(char lettre){ // You could also use switch/case instead of if/else if
+void LettreMorse::convertisseur(char lettre){ // the function used for translation, you could also use switch/case instead of if/else if in this function
 
 strcpy(lettremodifiee,""); // This makes sure there is no undefined character in the string "lettremodifiee"
     
