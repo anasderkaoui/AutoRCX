@@ -43,11 +43,11 @@ In the seventh session of building our autonomous car, there's been a remarkable
 
 Link to the code: [Source code for VL523L0X Distance measurement module for Arduino](https://robojax.com/learn/arduino/?vid=robojax-VL53L0X-polou)
 
-- Using the code above and the other codes to run the servo motor and the AC motor, I succeeded at running the three of them simultaneously without any interference from one on the other. Howerver, I had to look for a new component that converts a higher voltage to a lower voltage. The motor's voltage input range is wider than the servo's, the motor should be having at least 7.4V going in for the motor driver to start working, thus turning the AC motor on. Except that the servo motor's voltage input range is of 4.8V up to 6.8V. This is the main reason why we need a voltage converter. In order to convert the 7.4V voltage output from the generator to 6.8V, our supervisor handed out a little pcb card that is capable of converting high voltages to low voltages.
+- Using the code above and the other codes to run the servo motor and the DC motor, I succeeded at running the three of them simultaneously without any interference from one on the other. Howerver, I had to look for a new component that converts a higher voltage to a lower voltage. The motor's voltage input range is wider than the servo's, the motor should be having at least 7.4V going in for the motor driver to start working, thus turning the DC motor on. Except that the servo motor's voltage input range is of 4.8V up to 6.8V. This is the main reason why we need a voltage converter. In order to convert the 7.4V voltage output from the generator to 6.8V, our supervisor handed out a little pcb card that is capable of converting high voltages to low voltages.
 
 ![Converter](https://user-images.githubusercontent.com/115218309/206791566-10c8ce14-aca8-442a-bb3b-092e2f6b7754.jpg)
 
-- After writing a new code, the car seems to work, but not very well. Some parts of the code are skipped or maybe not working. But the main target today was to get the laser sensor, the servo motor and the AC motor to work together. Ultimately, the code will need some tweaks and modifications to enable the AC motor and the servo motor to respond to the sensor's output. The code is :
+- After writing a new code, the car seems to work, but not very well. Some parts of the code are skipped or maybe not working. But the main target today was to get the laser sensor, the servo motor and the DC motor to work together. Ultimately, the code will need some tweaks and modifications to enable the DC motor and the servo motor to respond to the sensor's output. The code is :
 
 `#include <Servo.h>`<br />
 `#include "CytronMotorDriver.h"`<br />
