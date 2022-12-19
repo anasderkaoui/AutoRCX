@@ -6,7 +6,7 @@
 
 In this session, I have mainly worked on the program of the car :
 
-- As always, I tested to see if the code was running so far so good before doing any changes to it. Then, I began apply some subtle modifications just to make it look more appealing to the average user. After that, I noticed something going on with the car shaft that is connected directly to the AC motor. The car, when triggered, was doing a sound of friction between two metals. When I saw the connection I found that the motor gear is scratching the surface of the frame's gear. I unscrewed the motor and then placed it safely in order to make good contact with the other gear. Here is an image from where that sound was coming from :
+- As always, I tested to see if the code was running so far so good before doing any changes to it. Then, I began apply some subtle modifications just to make it look more appealing to the average user. After that, I noticed something going on with the car shaft that is connected directly to the DC motor. The car, when triggered, was doing a sound of friction between two metals. When I saw the connection I found that the motor gear is scratching the surface of the frame's gear. I unscrewed the motor and then placed it safely in order to make good contact with the other gear. Here is an image from where that sound was coming from :
 
 ![Screenshot_20221216_221307_Gallery](https://user-images.githubusercontent.com/115218309/208196614-43c3eeee-64ac-4088-b5f6-d56cb3707fff.jpg)
 
