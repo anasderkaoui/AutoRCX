@@ -6,7 +6,7 @@
 
 In the sixth session of the building the autonomous RC car, I did but very little progress :
 
-- I screwed the AC motor down in place but did not test it to see if it is still making a strong connection with the gear on the car.
+- I screwed the DC motor down in place but did not test it to see if it is still making a strong connection with the gear on the car.
 Also, I may need to file some of the screws' head, that are holding the motor in place, because it is sticking out of the car frame.
 
 ![motoscrewed](https://user-images.githubusercontent.com/115218309/206027528-4e4c291b-1fce-40b4-8cf1-aef315636698.jpg)
@@ -31,7 +31,7 @@ Also, I may need to file some of the screws' head, that are holding the motor in
 `delay(1500);`<br />
 `}`<br />
 
-- You may wonder why I have two versions of the code that controls the servo motor. The answer is that I have tried to combine using the laser sensor, the servo motor and the AC motor to see if the car will stop if the laser is measuring a short distance, indicating an incoming obstruction. It turns out to be that the servo and the AC motor are not responding to the code from the Arduino card, and only the laser is working properly. When I asked my supervisor about that, he told that it could be the interference of the sensor on the two other parts. So he suggested to use another timer for the servo motor and giving it another try. The second code is :
+- You may wonder why I have two versions of the code that controls the servo motor. The answer is that I have tried to combine using the laser sensor, the servo motor and the DC motor to see if the car will stop if the laser is measuring a short distance, indicating an incoming obstruction. It turns out to be that the servo and the DC motor are not responding to the code from the Arduino card, and only the laser is working properly. When I asked my supervisor about that, he told that it could be the interference of the sensor on the two other parts. So he suggested to use another timer for the servo motor and giving it another try. The second code is :
 
 `// Program for moving servo motor, only this time using the repository ServoTimer2`<br />
 
