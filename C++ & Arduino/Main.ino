@@ -3,7 +3,7 @@
 #include "Traducteur.h" // Includes "Traducteur.h" that has all the needed functions for the morse code to work (including "LettreMorse.h")
 
 const int led = 13;  // The pin 13 that corresponds to the LED on the Arduino UNO board
-Traducteur traducteur=Traducteur();  // Creats an object of type "Traducteur" to allow us to use the functions in "Traducteur.h" that are defined in "Traducteur.cpp"
+Traducteur traducteur=Traducteur();  // Creates an object of type "Traducteur" to allow us to use the functions in "Traducteur.h" that are defined in "Traducteur.cpp"
 char phrase[70] = "Put the phrase/word to translate here";
 
 void setup() {
@@ -13,7 +13,7 @@ void setup() {
   Serial.print("Translation of : ");
   Serial.println(phrase);
   traducteur.morse(phrase); // The input which will be translated to morse code
-  Serial.println(" End of translation! "); // The errors are showing because the array "phrase" has empty columns in the end of it that have no defined value
+  Serial.println(" End of translation! ");
 
 }
 
