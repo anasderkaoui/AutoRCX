@@ -59,7 +59,7 @@ void Traducteur::dash()  // same for this function as for the one above
 
 void Traducteur::morse(char ch[70]) {  // The function takes a big array to store a lot of characters
 
-  for (int i = 0; i< 55 ; i++){  // Here we will make sure to cover all the characters of the array.
+  for (int i = 0; i< 70 ; i++){  // Here we will make sure to cover all the characters of the array.
 
     if (ch[i] == 'A' || ch[i] == 'a')
     {
