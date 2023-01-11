@@ -1,4 +1,4 @@
-// Translates dots/dashes to LED light pulses on the Arduino UNO R3 board
+// Translates dots and dashes to LED light pulses on the Arduino UNO R3 board
 
 #include "Traducteur.h" // Includes the class "Traducteur.h" and all its functions
 #include "LettreMorse.h" // Includes the class "LettreMorse.h" and all its functions so that will not redefine it again
@@ -7,10 +7,9 @@
      
 LettreMorse lettre=LettreMorse();
 
-Traducteur::Traducteur(){}
+Traducteur::Traducteur() {}
 
      const int led = 13; // The corresponding pin to the LED of the Arduino UNO board
-     int ledState = LOW;     // ledState used to set the LED
      
      // Generally, you should use "unsigned long" for variables that hold time
      // The value will quickly become too large for an int to store
@@ -19,8 +18,8 @@ Traducteur::Traducteur(){}
      unsigned long previousMillis = 0;        // will store last time LED was updated
 
      // constants won't change:
-     const long interval_dot = 900;           // interval at which to blink if it is a dot (milliseconds)
-     const long interval_dash = 1900;           // interval at which to blink if it is a dash (milliseconds)
+     const long interval_dot = 800;           // interval at which to blink if it is a dot (milliseconds)
+     const long interval_dash = 1700;           // interval at which to blink if it is a dash (milliseconds)
      const long space = 500;  // the time the LED will transit from dot to dash or vice-versa
 
 void Traducteur::dot()
@@ -36,6 +35,7 @@ void Traducteur::dot()
   while (currentMillis - previousMillis <= space) {
     currentMillis = millis();
   }
+  digitalWrite(led, LOW);
 
 }
 void Traducteur::dash()  // same for this function as for the one above
@@ -51,18 +51,19 @@ void Traducteur::dash()  // same for this function as for the one above
   while (currentMillis - previousMillis <= space) {
     currentMillis = millis();
   }
+  digitalWrite(led, LOW);
 
 }
 
-// Morse code for : Translating Dots/Dashes -> LED Blink
+// Morse code for : Translating Dots and Dashes to LED Blink
 
-void Traducteur::morse(char ch[50]){  // The function takes a big array to store a lot of characters
+void Traducteur::morse(char ch[70]) {  // The function takes a big array to store a lot of characters
 
-  for (int i = 0; i< 55 ; i++){  // Here we will make sure to cover all the characters of the array, if columns are left empty there will be a "Unknown symbol!" message, the function sizeof/strlen doesn't seem to work well
+  for (int i = 0; i< 55 ; i++){  // Here we will make sure to cover all the characters of the array.
 
     if (ch[i] == 'A' || ch[i] == 'a')
     {
-      lettre.convertisseur(ch[i]);  // Sends the character "ch[i]" to "LettreMorse.cpp" and translates it to its morse code, then trranslates it in terms of blinking the LED
+      lettre.convertisseur(ch[i]);  // Sends the character "ch[i]" to "LettreMorse.cpp" and translates it to its morse code, then translates it in terms of LED blinking
       dot();  // The function that blinks the LED to match a dot
 
       dash();  // The function that blinks the LED to match a dash
@@ -194,11 +195,20 @@ void Traducteur::morse(char ch[50]){  // The function takes a big array to store
     }
     else if (ch[i] == 'N' || ch[i] == 'n')
     {
-      lettre.convertisseur(ch[i]);
-      dash();
+      if (ch[i] == 'n') {
+        Serial.print(" - . ");
+        dash();
+           
+        dot();
+      }
 
-      dot();
+      else {
+        lettre.convertisseur(ch[i]);
+        dash();
 
+        dot();
+
+      }
     }
     else if (ch[i] == 'O' || ch[i] == 'o')
     {
@@ -474,7 +484,7 @@ void Traducteur::morse(char ch[50]){  // The function takes a big array to store
     }
     else
     {
-      Serial.print("Unknown symbol!");
+      Serial.print("");
     }
   }
 }
