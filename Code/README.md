@@ -1,1 +1,1 @@
-In this folder you will find the code ARDUINO for the Autonomous RC Car.
+In this folder you will find the ARDUINO/JETSON code for the Autonomous RC Car.
