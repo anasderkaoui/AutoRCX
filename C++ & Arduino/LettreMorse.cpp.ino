@@ -5,7 +5,7 @@
 
 LettreMorse::LettreMorse(){}; 
     
-char lettremodifiee[70]; // the array that will contain the translation of a character typed by the user, we chose a large number to avoid filling up the array quickly
+char lettremodifiee[100]; // the array that will contain the translation of a character typed by the user, we chose a large number to avoid filling up the array quickly
 
 // The corresponding morse code to each letter (example)
 //A  .-  B -...  C -.-.  D -.. E . F ..-.
