@@ -26,11 +26,11 @@ void Traducteur::dot()
 {
   previousMillis = millis();  // is the varibale that has the time we got into the function
 
-  digitalWrite(led, LOW); // The LED will be turned OFF at the beginning
+  digitalWrite(led, HIGH); // The LED will be turned ON
   while (currentMillis - previousMillis <= interval_dot) {  // This loop acts like a delay
     currentMillis = millis();  // is the variable that will have the time we exceeded the interval
   }
-  digitalWrite(led, HIGH);  // after the "delay loop alternative" has finished, we want the LED turned on
+  digitalWrite(led, LOW);  // after the "delay loop alternative" has finished, we want the LED turned off
   previousMillis = millis();  // here we repeat the same thing as in the previous lines in this function, to replace a delay
   while (currentMillis - previousMillis <= space) {
     currentMillis = millis();
@@ -42,11 +42,11 @@ void Traducteur::dash()  // same for this function as for the one above
 {
   previousMillis = millis();
   
-  digitalWrite(led, LOW);
+  digitalWrite(led, HIGH);
   while (currentMillis - previousMillis <= interval_dash) {
     currentMillis = millis();
   }
-  digitalWrite(led, HIGH);
+  digitalWrite(led, LOW);
   previousMillis = millis();
   while (currentMillis - previousMillis <= space) {
     currentMillis = millis();
@@ -57,9 +57,9 @@ void Traducteur::dash()  // same for this function as for the one above
 
 // Morse code for : Translating Dots and Dashes to LED Blink
 
-void Traducteur::morse(char ch[70]) {  // The function takes a big array to store a lot of characters
+void Traducteur::morse(char ch[100]) {  // The function takes a big array to store a lot of characters
 
-  for (int i = 0; i< 70 ; i++){  // Here we will make sure to cover all the characters of the array.
+  for (int i = 0; i< 100 ; i++){  // Here we will make sure to cover all the characters of the array.
 
     if (ch[i] == 'A' || ch[i] == 'a')
     {
@@ -105,8 +105,16 @@ void Traducteur::morse(char ch[70]) {  // The function takes a big array to stor
     }
     else if (ch[i] == 'E' || ch[i] == 'e')
     {
-      lettre.convertisseur(ch[i]);
-      dot();
+      if (ch[i] == 'E') {
+        Serial.print(" . ");
+        dot();
+      }
+
+      else {
+        lettre.convertisseur(ch[i]);
+        dot();
+
+      }
 
     }
     else if (ch[i] == 'F' || ch[i] == 'f')
