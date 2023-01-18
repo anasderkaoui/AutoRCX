@@ -4,7 +4,7 @@
 
 const int led = 13;  // The pin 13 that corresponds to the LED on the Arduino UNO board
 Traducteur traducteur=Traducteur();  // Creates an object of type "Traducteur" to allow us to use the functions in "Traducteur.h" that are defined in "Traducteur.cpp"
-char phrase[70] = "Put the phrase/word to translate here";
+char phrase[100] = "Put the phrase/word to translate in here";
 
 void setup() {
 
