@@ -115,7 +115,6 @@ void Traducteur::morse(char ch[100]) {  // The function takes a big array to sto
         dot();
 
       }
-
     }
     else if (ch[i] == 'F' || ch[i] == 'f')
     {
