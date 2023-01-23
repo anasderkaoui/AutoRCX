@@ -13,7 +13,7 @@
 
 
  ## setup-mysql :
-    * Explains how to install MySQL and how to import database
+    * Explains how to install MySQL and how to import the database
 
  ## dump-database.sh :
     * The database backup script
