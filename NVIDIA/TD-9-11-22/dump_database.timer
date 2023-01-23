@@ -1,9 +1,0 @@
-[Unit]
-Description=Run my service every 10mins
-
-[Timer]
-OnBootSec=1min
-OnUnitActiveSec=10min
-
-[Install]
-WantedBy=timers.target
