@@ -1,13 +1,16 @@
+//This is the Arduino code for the Autonomous RC car
+
 `/* Replacing delay with its alternative is not a good idea for every function */`<br />
 
+// The following libraries will be used to control the servo motor, the DC motor and the sensors
 `#include <Servo.h>`<br />
-`//#include "CytronMotorDriver.h"`<br />
 `#include <Wire.h>`<br />
 `#include <VL53L0X.h>`<br />
 
+// Ultrasonic sensors setup
 `// HC-SR04 Front Right Sensor`<br />
-`#define echoPin1 8 // attach pin D12 Arduino to pin Echo of HC-SR04`<br />
-`#define trigPin1 9 //attach pin D11 Arduino to pin Trig of HC-SR04`<br />
+`#define echoPin1 8 // attach pin D8 Arduino to pin Echo of HC-SR04`<br />
+`#define trigPin1 9 //attach pin D9 Arduino to pin Trig of HC-SR04`<br />
 
 `// defines variables`<br />
 `long durationFR; // variable for the duration of sound wave travel`<br />
@@ -22,33 +25,33 @@
 `int SoundDistanceFL; // variable for the distance measurement`<br />
 
 `// HC-SR04 Rear Right Sensor`<br />
-`#define echoPin3 12 // attach pin D7 Arduino to pin Echo of HC-SR04`<br />
-`#define trigPin3 11 //attach pin D6 Arduino to pin Trig of HC-SR04`<br />
+`#define echoPin3 12 // attach pin D12 Arduino to pin Echo of HC-SR04`<br />
+`#define trigPin3 11 //attach pin D11 Arduino to pin Trig of HC-SR04`<br />
 
 `// defines variables`<br />
 `long durationRR; // variable for the duration of sound wave travel`<br />
 `int SoundDistanceRR; // variable for the distance measurement`<br />
 
 `// HC-SR04 Rear Left Sensor`<br />
-`#define echoPin4 2 // attach pin D7 Arduino to pin Echo of HC-SR04`<br />
-`#define trigPin4 5 //attach pin D6 Arduino to pin Trig of HC-SR04`<br />
+`#define echoPin4 2 // attach pin D2 Arduino to pin Echo of HC-SR04`<br />
+`#define trigPin4 5 //attach pin D5 Arduino to pin Trig of HC-SR04`<br />
 
 `// defines variables`<br />
 `long durationRL; // variable for the duration of sound wave travel`<br />
 `int SoundDistanceRL; // variable for the distance measurement`<br />
 
+// Laser sensor setup
 `VL53L0X sensor;`<br />
-`//VL53L0X sensor2;`<br />
 
-`// Configure the motor driver.`<br />
-`//CytronMD motor(PWM_DIR,4, 9);  // DIR = Pin 9, PMW = Pin 4.`<br />
+// DC motor setup
 `int Dir = 4;`<br />
 `int PWM = 3;`<br />
 
-`int pos = 0;    // variable to store the servo position`<br />
-`Servo servo1; // Pin 10, was 5`<br />
+// Servo motor setup
+`int pos = 0;  // variable to store the servo position`<br />
+`Servo servo1; // Pin 10`<br />
 
-`//Delay alternative`<br />
+`//Delay alternative, if used`<br />
 `unsigned long previousMillis = 0;`<br />
 `unsigned long interval = 1200;  // interval at which to perform the task (milliseconds)`<br />
 `unsigned long LongInterval = 2200;  // interval at which to perform the task (milliseconds)`<br />
@@ -56,31 +59,23 @@
 
 `void setup() {`<br />
 
-`  // put your setup code here, to run once:`<br />
-
-`  //Motor`<br />
+`  //DC motor`<br />
 `  pinMode(PWM, OUTPUT);`<br />
 `  pinMode(Dir, OUTPUT);`<br />
 
-`  // Servo`<br />
-`  servo1.attach(10); // was 5`<br />
-`  servo1.write(70); // turn right`<br />
+`  // Servo motor`<br />
+`  servo1.attach(10);`<br />
+`  servo1.write(70); // wheels turn slightly to the right (15 (min) to the left, 55 to the center, 95 (max) to the right)`<br />
 `  checkInterval();`<br />
 `  servo1.write(55); // wheels back to the center`<br />
 `  checkInterval();`<br />
 
-`  // Sensor 1`<br />
+`  // Laser sensor`<br />
 `  Serial.begin(9600); // Serial Communication is starting with 9600 of baudrate speed`<br />
 `  Wire.begin();`<br />
 `  sensor.init();`<br />
 `  sensor.setTimeout(500);`<br />
 `  sensor.startContinuous();`<br />
-
-`  // Sensor 2`<br />
-`  //Wire.begin();`<br />
-`  //sensor2.init();`<br />
-`  //sensor2.setTimeout(500);`<br />
-`  //sensor2.startContinuous();`<br />
 
 `  // HC-SR04 sensors`<br />
 `  pinMode(trigPin1, OUTPUT); // Sets the trigPin as an OUTPUT`<br />
@@ -100,7 +95,7 @@
 `void loop() {`<br />
 
 `  // Laser Sensor`<br />
-`  int dist = 0;`<br />
+`  int dist = 0; //It is the distance given by the laser sensor placed at the front of the car`<br />
 `  dist = sensor.readRangeContinuousMillimeters();`<br />
 `  dist = dist - 30; // -30 is to compensate for error. Change or set it to zero to make it work for your sensor`<br />
 `  Serial.print("Front distance: ");`<br />
@@ -108,19 +103,19 @@
 `  Serial.print("mm");`<br />
 `  Serial.println();`<br />
 
-`  //Motor`<br />
+`  //Main code`<br />
 
 `  if (dist <= 450) {`<br />
 
 `    servo1.write(55);`<br />
-`    analogWrite(PWM, 0);`<br />
-`    checkInterval();`<br />
+`    analogWrite(PWM, 0); // 0 means DC motor is not moving`<br />
+`    checkInterval(); // This is the function replacing the "delay" function`<br />
 
 `    if (SoundSensorRR() >= SoundSensorRL()) {`<br />
 `      servo1.write(80);`<br />
 `      analogWrite(PWM, 0);`<br />
-`      digitalWrite(Dir, LOW);`<br />
-`      analogWrite(PWM, 57);`<br />
+`      digitalWrite(Dir, LOW); // LOW means DC motor will be going backwards, HIGH means DC motor will be going forward`<br />
+`      analogWrite(PWM, 57); // This is the speed of the motor (0-255)`<br />
 `      checkInterval();`<br />
 `    }`<br />
 
@@ -132,12 +127,12 @@
 `      checkInterval();`<br />
 `    }`<br />
 
-`    if (SoundSensorFR() <= SoundSensorFL()) { // was else if  &  15 instead of SoundSensorFL()`<br />
+`    if (SoundSensorFR() <= SoundSensorFL()) {
 
 `      if (SoundSensorRR() <= 10) {`<br />
 `        servo1.write(55);`<br />
 `        digitalWrite(Dir, LOW);`<br />
-`        analogWrite(PWM, 0); // 52 if it was straight with the obstacle aside`<br />
+`        analogWrite(PWM, 0);
 `      }`<br />
 
 `      else if (SoundSensorRL() >= 20) {`<br />
@@ -146,7 +141,7 @@
 `        digitalWrite(Dir, LOW);`<br />
 `        analogWrite(PWM, 57);`<br />
 `        checkInterval();`<br />
-`        servo1.write(15); // only if FR has become again free`<br />
+`        servo1.write(15);`<br />
 `        digitalWrite(Dir, LOW);`<br />
 `        analogWrite(PWM, 57);`
 `        checkInterval();`<br />
@@ -154,7 +149,7 @@
 
 `      else {`<br />
 
-`        servo1.write(95); // Move the servo to the left`<br />
+`        servo1.write(95); // Move the servo to the right`<br />
 `        checkInterval();`<br />
 `        digitalWrite(Dir, LOW);`<br />
 `        analogWrite(PWM, 57);`<br />
@@ -175,7 +170,7 @@
 `      if (SoundSensorRR() <= 10) {`<br />
 `        servo1.write(55);`<br />
 `        digitalWrite(Dir, LOW);`<br />
-`        analogWrite(PWM, 0); // 52 if it was straight with the obstacle aside`<br />
+`        analogWrite(PWM, 0);`<br />
 `      }`<br />
 
 `      else if (SoundSensorRL() >= 20) {`<br />
@@ -191,7 +186,7 @@
 `      }`<br />
 
 `      else {`<br />
-`        servo1.write(15); // Move the servo to the right, 15 is the minimum not 10`<br />
+`        servo1.write(15); // Move the servo to the left`<br />
 `        checkInterval();`<br />
 `        digitalWrite(Dir, LOW);`<br />
 `        analogWrite(PWM, 57);`<br />
@@ -216,7 +211,7 @@
 `   analogWrite(PWM, 57);`<br />
 `   checkInterval();`<br />
 
-`   while (SoundSensorFL() >= 10 && SoundSensorFL() <= 20) { //general choice 100cm   //was if, but juttering`<br />
+`   while (SoundSensorFL() >= 10 && SoundSensorFL() <= 20) {`<br />
 `     servo1.write(80);`<br />
 `     digitalWrite(Dir, HIGH);`<br />
 `     analogWrite(PWM, 57);`<br />
@@ -236,7 +231,7 @@
 `     checkInterval();`<br />
 `   }`<br />
 
-`   while (SoundSensorFR() >= 10 && SoundSensorFR() <= 20) { //general choice 100cm   //was if`<br />
+`   while (SoundSensorFR() >= 10 && SoundSensorFR() <= 20) {`<br />
 `     servo1.write(30);`<br />
 `     digitalWrite(Dir, HIGH);`<br />
 `     analogWrite(PWM, 57);`<br />
@@ -263,7 +258,7 @@
 `   servo1.write(55);`<br />
 `   digitalWrite(Dir, HIGH);`<br />
 `   analogWrite(PWM, 57);`<br />
-`   // if while is used instead of if, use : int dist = sensor.readRangeContinuousMillimeters();`<br />
+
 `   while (SoundSensorFL() >= 10 && SoundSensorFL() <= 20) { //general choice 100cm   //was if`<br />
 `     servo1.write(80);`<br />
 `     digitalWrite(Dir, HIGH);`<br />
@@ -284,7 +279,7 @@
 `     checkInterval();`<br />
 `   }`<br />
 
-`   while (SoundSensorFR() >= 10 && SoundSensorFR() <= 20) { //general choice 100cm   //was if`<br />
+`   while (SoundSensorFR() >= 10 && SoundSensorFR() <= 20) {`<br />
 `     servo1.write(30);`<br />
 `     digitalWrite(Dir, HIGH);`<br />
 `     analogWrite(PWM, 57);`<br />
@@ -306,7 +301,7 @@
 ` }`<br />
 `}`<br />
 
-`//Functions called in the code`<br />
+`//Functions called in the code above`<br />
 
 `// HC-SR04 Front Right Sensor`<br />
 
