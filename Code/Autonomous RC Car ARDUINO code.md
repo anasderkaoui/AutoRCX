@@ -2,12 +2,12 @@
 
 `/* Replacing delay with its alternative is not a good idea for every function */`<br />
 
-// The following libraries will be used to control the servo motor, the DC motor and the sensors
+// The following libraries will be used to control the servo motor, the DC motor and the sensors <br />
 `#include <Servo.h>`<br />
 `#include <Wire.h>`<br />
 `#include <VL53L0X.h>`<br />
 
-// Ultrasonic sensors setup
+// Ultrasonic sensors setup <br />
 `// HC-SR04 Front Right Sensor`<br />
 `#define echoPin1 8 // attach pin D8 Arduino to pin Echo of HC-SR04`<br />
 `#define trigPin1 9 //attach pin D9 Arduino to pin Trig of HC-SR04`<br />
@@ -40,14 +40,14 @@
 `long durationRL; // variable for the duration of sound wave travel`<br />
 `int SoundDistanceRL; // variable for the distance measurement`<br />
 
-// Laser sensor setup
+// Laser sensor setup <br />
 `VL53L0X sensor;`<br />
 
-// DC motor setup
+// DC motor setup <br />
 `int Dir = 4;`<br />
 `int PWM = 3;`<br />
 
-// Servo motor setup
+// Servo motor setup <br />
 `int pos = 0;  // variable to store the servo position`<br />
 `Servo servo1; // Pin 10`<br />
 
@@ -127,7 +127,7 @@
 `      checkInterval();`<br />
 `    }`<br />
 
-`    if (SoundSensorFR() <= SoundSensorFL()) {
+`    if (SoundSensorFR() <= SoundSensorFL()) {`<br />
 
 `      if (SoundSensorRR() <= 10) {`<br />
 `        servo1.write(55);`<br />
