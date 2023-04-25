@@ -14,7 +14,7 @@ The highlight of this session was undoubtedly my first experience with the Nvidi
 
 ![-jetson-waveshare-35844](https://user-images.githubusercontent.com/115218309/232207341-64b2d813-9357-45a4-a94c-97a9792ac67f.jpg)
 
-Our chosen operating system, ROS, required some crucial preliminary steps before installation. I began by formatting and mounting the SD card's disk partition in Linux, utilizing ext4 to make optimal use of the additional storage capacity. This task was crucial in ensuring smooth functioning and efficient management of the vast amounts of data we anticipated handling. You can follow the commands below to mount and format your SD card:<br />
+Our chosen operating system, ROS, required some crucial preliminary steps before installation. I began by formatting and mounting the SD card's disk partition in Linux, utilizing ext4 to make optimal use of the additional storage capacity. This task was crucial in ensuring smooth functioning and efficient management of the vast amounts of data we anticipated handling. You can follow the commands below to **mount and format your SD card**:<br />
 
 `lsblk` :locate a partition you wish to format. The SD card appears as "sdb1..." or in our case "mmcblk1..."<br />
 `sudo mkfs -t ext4 /dev/sdb1` :format disk partition with ext4 file system<br />
@@ -23,7 +23,7 @@ Our chosen operating system, ROS, required some crucial preliminary steps before
 `sudo mount -t auto /dev/sdb1 [yourmountpoint]` :mount the partition<br />
 `lsblk -f` :verify if the partition is mounted<br />
 
-After the process of mounting and formating the SD card is complete, now it is time to move user data from /home to /media/storage/home.<br />
+After the process of mounting and formating the SD card is complete, now it is time to **move user data from /home to /media/storage/home**.<br />
 Follow the instructions given bellow:<br />
 
 Temporarily mount the new partition:<br />
@@ -47,7 +47,7 @@ Note or copy/paste the correct UUID to edit the fstab with:<br />
 
 Finally, reboot. After a reboot, /home resides on the new drive having plenty of space.<br />
 
-After rebooting the card, we are ready to install ROS on it. We chose to install ROS Melodic which is compatible with the version of Ubuntu that our card is running (20.04). In order to do so, you could follow the instructions at the end of the page or simply copy and execute the bash file bellow in your terminal:<br />
+After rebooting the card, we are ready to **install ROS** on it. We chose to install ROS Melodic which is compatible with the version of Ubuntu that our card is running (20.04). In order to do so, you could follow the instructions at the end of the page or simply copy and execute the bash file bellow in your terminal:<br />
 
 `#!/bin/bash`<br />
 
