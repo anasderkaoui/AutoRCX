@@ -87,7 +87,7 @@ After rebooting the card, we are ready to **install ROS** on it. We chose to ins
 `# ROS_DISTRO=melodic`<br />
 
 Sources:<br />
-- Format SD card: https://phoenixnap.com/kb/linux-format-disk
-- Move home to SD card: https://askubuntu.com/questions/21321/move-home-folder-to-second-drive
-- Installing ROS: http://wiki.ros.org/melodic/Installation/Ubuntu
-- Configuring ROS: http://wiki.ros.org/fr/ROS/Tutorials/InstallingandConfiguringROSEnvironment
+- [Format SD card](https://phoenixnap.com/kb/linux-format-disk)
+- [Move home to SD card](https://askubuntu.com/questions/21321/move-home-folder-to-second-drive)
+- [Installing ROS](http://wiki.ros.org/melodic/Installation/Ubuntu)
+- [Configuring ROS](http://wiki.ros.org/fr/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
