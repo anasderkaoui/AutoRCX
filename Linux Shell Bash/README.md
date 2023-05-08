@@ -2,7 +2,7 @@
 ## This is a full guide on how to :
 
  - Install MySQL on Linux (in my case I run Linux in my VM)
- - Create a database from this zip file : https://www.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip
+ - Create a database from this [zip file](https://www.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip)
  - Write a script that backs up the classicmodels database, complying with the following requirements:
     * The database backup is contained in a single file
     * This file is compressed in .bz2 format
