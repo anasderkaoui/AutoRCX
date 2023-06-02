@@ -41,9 +41,9 @@ Mount the new partition as HOME:<br />
 Make HOME permanent:<br />
 We need to know the UUID of the new partition for the fstab entry seen from:<br />
 `sudo blkid`<br />
-Note or copy/paste the correct UUID to edit the fstab with:<br />
+Note or copy/paste the correct UUID (of your sd card partition) to edit the fstab with:<br />
 `sudo nano /etc/fstab` :you can use any other editor (vim for example), and add the following line at the end:
-`UUID=<noted number from above>    /home    ext4    defaults   0  2`<br />
+`UUID=noted number from above    /home    ext4    defaults   0  2`<br />
 
 Finally, reboot. After a reboot, /home resides on the new drive having plenty of space.<br />
 
