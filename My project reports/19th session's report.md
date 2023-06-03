@@ -10,7 +10,7 @@ Today marked a significant milestone in our project, as we took a giant leap for
 
 In the previous session, I had encountered a roadblock in 3D printing the component responsible for carrying the laser sensor. However, in this session, I approached the task with renewed determination and precision. With only one attempt, I managed to obtain the correct measurements and create a carrier that securely held the sensor in place. The carrier is now functioning seamlessly and provides the expected level of stability, ensuring the sensor's accuracy and reliability.<br />
 
-The highlight of this session was undoubtedly my first experience with the Nvidia Jetson Nano card. This impressive piece of technology is a game-changer, equipped with Ubuntu OS, and it has 4GB of internal storage. To further augment our project's capacity, our supervisor generously provided us with an additional 64GB SD card, which will help store our next projects.<br />
+The highlight of this session was undoubtedly my first experience with the Nvidia Jetson Nano card. This impressive piece of technology is a game-changer, equipped with Ubuntu OS, and it has 16 GB of internal storage. To further augment our project's capacity, our supervisor generously provided us with an additional 64GB SD card, which will help store our next projects.<br />
 
 ![-jetson-waveshare-35844](https://user-images.githubusercontent.com/115218309/232207341-64b2d813-9357-45a4-a94c-97a9792ac67f.jpg)
 
