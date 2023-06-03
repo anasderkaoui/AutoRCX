@@ -45,7 +45,7 @@ Note or copy/paste the correct UUID (NOT PUUID) of your sd card partition then e
 `sudo nano /etc/fstab` : you can use any other editor (vim for example), and add the following line at the end of the file (as shown in the photo below):
 `UUID=paste your UUID here with no modification    /home    ext4    defaults   0  2`<br />
 
-![rn_image_picker_lib_temp_d4bf532e-9744-44f4-9b78-a2ac7e8fbe27](https://github.com/anasderkaoui/AutoRCX/assets/115218309/bf36cb6d-6b42-49b1-afd8-848764568a2e)
+![rn_image_picker_lib_temp_d4bf532e-9744-44f4-9b78-a2ac7e8fbe27](https://github.com/anasderkaoui/AutoRCX/assets/115218309/6b80a349-a324-47a5-a736-38c1e83d4166)
 
 **Note that if you add <> or () to your UUID you may have to reflash the card !**
 
