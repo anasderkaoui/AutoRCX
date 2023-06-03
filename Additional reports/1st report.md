@@ -22,6 +22,6 @@ After the card had booted in emergency mode, I pressed the ENTER key to continue
 
 Then I simply modified the file that contained the UUID number and deleted the <> signs.<br >
 
-![rn_image_picker_lib_temp_d4bf532e-9744-44f4-9b78-a2ac7e8fbe27](https://github.com/anasderkaoui/AutoRCX/assets/115218309/8d029d64-1bea-40ac-a528-4d566d981abb)
+![rn_image_picker_lib_temp_d4bf532e-9744-44f4-9b78-a2ac7e8fbe27](https://github.com/anasderkaoui/AutoRCX/assets/115218309/4a1c61cc-eb78-429a-bc4c-4b4afcc25490)
 
 Eventually, I had to restart the card and the problem was solved !
