@@ -43,7 +43,9 @@ We need to know the UUID of the new partition for the fstab entry seen from:<br 
 `sudo blkid`<br />
 Note or copy/paste the correct UUID (NOT PUUID) of your sd card partition then edit the fstab with:<br />
 `sudo nano /etc/fstab` : you can use any other editor (vim for example), and add the following line at the end of the file:
-`UUID=noted number from above    /home    ext4    defaults   0  2`<br />
+`UUID=paste your UUID here with no modification    /home    ext4    defaults   0  2`<br />
+
+**Note that if you add <> or () to your UUID you may have to reflash the card !**
 
 Finally, reboot. After a reboot, /home resides on the new drive having plenty of space.<br />
 
