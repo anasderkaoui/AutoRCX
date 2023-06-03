@@ -16,12 +16,12 @@ The highlight of this session was undoubtedly my first experience with the Nvidi
 
 Our chosen operating system, ROS, required some crucial preliminary steps before installation. I began by formatting and mounting the SD card's disk partition in Linux, utilizing ext4 to make optimal use of the additional storage capacity. This task was crucial in ensuring smooth functioning and efficient management of the vast amounts of data we anticipated handling. You can follow the commands below to **mount and format your SD card**:<br />
 
-`lsblk` :locate a partition you wish to format. The SD card appears as "sdb1..." or in our case "mmcblk1..."<br />
-`sudo mkfs -t ext4 /dev/sdb1` :format disk partition with ext4 file system<br />
-`lsblk -f` :verify the file system change<br />
-`sudo mkdir -p [yourmountpoint]` :create a mount point<br />
-`sudo mount -t auto /dev/sdb1 [yourmountpoint]` :mount the partition<br />
-`lsblk -f` :verify if the partition is mounted<br />
+`lsblk` : locate a partition you wish to format. The SD card appears as "sdb1..." or in our case "mmcblk1..."<br />
+`sudo mkfs -t ext4 /dev/sdb1` : format disk partition with ext4 file system<br />
+`lsblk -f` : verify the file system change<br />
+`sudo mkdir -p [yourmountpoint]` : create a mount point<br />
+`sudo mount -t auto /dev/sdb1 [yourmountpoint]` : mount the partition<br />
+`lsblk -f` : verify if the partition is mounted<br />
 
 After the process of mounting and formating the SD card is complete, now it is time to **move user data from /home to /media/storage/home**.<br />
 Follow the instructions given bellow:<br />
@@ -35,14 +35,14 @@ Copy HOME to the new location:<br />
 
 Mount the new partition as HOME:<br />
 `sudo mount /dev/sdb1 /home`<br />
-`sudo umount /home` :unmount the new home first<br />
-`sudo rm -rf /home/*` :deletes the old home<br />
+`sudo umount /home` : unmount the new home first<br />
+`sudo rm -rf /home/*` : deletes the old home<br />
 
-Make HOME permanent:<br />
+Make HOME permanent (**crucial part**):<br />
 We need to know the UUID of the new partition for the fstab entry seen from:<br />
 `sudo blkid`<br />
-Note or copy/paste the correct UUID (of your sd card partition) to edit the fstab with:<br />
-`sudo nano /etc/fstab` :you can use any other editor (vim for example), and add the following line at the end:
+Note or copy/paste the correct UUID (NOT PUUID) of your sd card partition then edit the fstab with:<br />
+`sudo nano /etc/fstab` : you can use any other editor (vim for example), and add the following line at the end of the file:
 `UUID=noted number from above    /home    ext4    defaults   0  2`<br />
 
 Finally, reboot. After a reboot, /home resides on the new drive having plenty of space.<br />
