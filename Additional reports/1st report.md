@@ -25,3 +25,33 @@ Then I simply modified the file that contained the UUID number and deleted the <
 ![rn_image_picker_lib_temp_d4bf532e-9744-44f4-9b78-a2ac7e8fbe27](https://github.com/anasderkaoui/AutoRCX/assets/115218309/4a1c61cc-eb78-429a-bc4c-4b4afcc25490)
 
 Eventually, I had to restart the card and the problem was solved !
+
+**As a bonus, I will guide you through two methods, one being more effective than the other, to get the output of your Jetson Nano on your laptop screen without using any external peripherals !**
+
+1- In the first method we will be using VNC (Virtual Network Computing) (The least effective method because the output is not very smooth). In this method you will need a monitor, a keyboard and if you want also a mouse.
+  - First, after booting up the system, you will need to enter this command line in the terminal: `sudo vim /usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml`
+    This command will open up a file and we will add a key to it.
+  - Add this key as shown in the screenshot below: `<key name=’enabled’ type=’b’>`
+                  `<summary>Enable remote access to the desktop</summary>`
+                  `<description>`
+                  `If true, allows remote access to the desktop via the RFB`
+                  `protocol. Users on remote machines may then connect to the`
+                  `desktop using a VNC viewer.`
+                  `</description>`
+                  `<default>true</default>`
+                  `</key>`
+                  
+                  ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/b36faae1-847f-4dcd-9b02-b3b4917d414a)
+
+  - After that, we will need to compile the file. Run this command to do so: `sudo glib-compile-schemas /usr/share/glib-2.0/schemas`
+  - Now search for "Desktop Sharing" in the search bar (can be accessed by pressing the "Windows" key) and open it.
+  - Tick the “Allow other users to view your desktop” and also “Allow other users to control your desktop” checkmarks. Then make sure “You must confirm each access to this machine” is turned off. Finally tick the “Require the user to enter this password” checkmark, and enter a password for the VNC session.
+
+![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/ae0dbcc5-94e7-4b36-8f4d-0546ee78433a)
+
+  - Open "startup applications" using the search bar. Now, click Add at the right of the box, then type ‘Vino’ in the name box, and then in the command box enter **/usr/lib/vino/vino-server**. Click Save at the bottom right of the box, and then close the app.
+
+![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/70dab529-da0d-4bf6-b746-f0bb0e2191e0)
+
+  - Next, we need to disable encryption of the VNC connection to get things working. To do this, open the terminal and enter the following commands: `gsettings set org.gnome.Vino require-encryption false`
+`gsettings set org.gnome.Vino prompt-enabled false`
