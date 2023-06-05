@@ -1,6 +1,6 @@
-In this session we will go through the basic stuff of ROS.
+In this session we will go through the basic stuff of ROS.<br >
 
-First, here is a **[ROS cheatsheet](https://docs.google.com/document/d/1aHzvnf_MWg9O6PzCw1KsePNh27TZ9ND01cHMHroUVQE/edit?usp=sharing)** where you will find the most common commands in ROS.
+First, here is a **[ROS cheatsheet](https://docs.google.com/document/d/1aHzvnf_MWg9O6PzCw1KsePNh27TZ9ND01cHMHroUVQE/edit?usp=sharing)** where you will find the most common commands in ROS.<br >
 
 Example of publisher and subscriber in ROS :<br >
 
@@ -12,9 +12,9 @@ After that, run theses cammands while in the catkin_ws directory:<br >
 `catkin build` build the necessary files for the ROS workspace <br >
 
 Now we can create the publisher and subscriber. First let's create a package named "pub_sub": `catkin_create_pkg pub_sub` Then create the "scripts" folder where our scripts will be storred: `mkdir scripts` <br >
-In this folder, run theses commands to create the publisher and subscriber: `touch publisher.py` then `touch subscriber.py`.
-To make these files executable (change permissions), run this command: `chmod +rwx subscriber.py` then `chmod +rwx publisher.py` (You can also use +777 instead of +rwx. Replace + with - to remove permissions. Note that “r” is for read, “w” is for write, and “x” is for execute)
-After that is done, it is time to code ! Open the publisher first, using this command: `vim publisher.py` (You can also use nano if you want) and modify it as shown below. We will be using Python2 **(ROS Melodic does not support python3)**:
+In this folder, run theses commands to create the publisher and subscriber: `touch publisher.py` then `touch subscriber.py` <br >
+To make these files executable (change permissions), run this command: `chmod +rwx subscriber.py` then `chmod +rwx publisher.py` (You can also use +777 instead of +rwx. Replace + with - to remove permissions. Note that “r” is for read, “w” is for write, and “x” is for execute)<br >
+After that was done, it is time to code ! Open the publisher first, using this command: `vim publisher.py` (You can also use nano if you want) and modify it as shown below. We will be using python2 **(ROS Melodic does not support python3)**:
 ```python
 #!/usr/bin/env python2
 
@@ -60,4 +60,5 @@ source ~/catkin_ws/devel/setup.bash
 rosrun pub_sub publisher.py
 ```
 To make sure publisher.py is working, open a new window and run this command that lists the topics that are running: `rostopic list` You should see the topic "/topic" running.
-You can be more sure of that by typing: `rostopic echo /topic`
+You can be more sure of that by typing: `rostopic echo /topic` <br >
+And that is all for the publisher and subscriber !
