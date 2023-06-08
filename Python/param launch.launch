@@ -1,0 +1,6 @@
+<launch>
+  <rosparam command="load" file="/home/name_name/catkin_ws/src/pub_sub/config/param_anas.yaml" />
+</launch>
+
+
+# /home/name_name/catkin_ws/src/pub_sub can be replaced by $(find pub_sub) this constructs the system to find the pub_sub package wherever it was in the system architecture
