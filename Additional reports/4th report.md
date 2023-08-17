@@ -8,7 +8,7 @@ First step : Insert the SSD in the M.2 slot on the Jetson Nano and screw it in p
 
 Second step : Now comes the crucial part !
 
-**WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AND WILL REQUIRE REFLASHING !!** <br>
+**WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AND WILL REQUIRE [REFLASHING](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/1st%20report.md) !!** <br>
 
 - Locate and identify storage device :<br>
   The first thing you need to do is to identify the storage device you are intending to use.
