@@ -28,7 +28,7 @@ The ending "p1" stands for partition one. In the following steps **you must remo
   1. Format the storage device : `sudo parted <YOUR_STORAGE_DEVICE> mklabel gpt`
   2. Create the RootFS partition : `sudo parted <YOUR_STORAGE_DEVICE> mkpart APP 0GB <YOUR_ROOTFS_SIZE>`
   3. Create filesystem : `sudo mkfs.ext4 <YOUR_STORAGE_DEVICE>`
-  4. Copy the existing RootFS to the storage device :
+  4. Copy the existing RootFS to the storage device :<br>
      `sudo mount <YOUR_STORAGE_DEVICE> /mnt`<br>
      `sudo rsync -axHAWX --numeric-ids --info=progress2 --`<br>
      `exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","/lost+found"} / /mnt/`<br>
