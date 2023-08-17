@@ -15,7 +15,7 @@ WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AN
 
 ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/b924526d-8872-4430-a444-77afc24b8f00)
 
-With the disc program you can find your device as shown in the Picture. In the example above: /dev/sdb1
+Search "disk" in the search bar and you can find your device as shown in the Picture. In the example above: /dev/sdb1
 
 NOTE : You will have to format your SSD afterwards, make sure it does not hold important data !
 
