@@ -8,7 +8,7 @@ First step : Insert the SSD in the M.2 slot on the Jetson Nano and screw it in p
 
 Second step : Now comes the crucial part !
 
-WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AND WILL REQUIRE REFLASHING !!<br>
+**WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AND WILL REQUIRE REFLASHING !!** <br>
 
 - Locate and identify storage device :<br>
   The first thing you need to do is to identify the storage device you are intending to use.
@@ -17,7 +17,7 @@ WARNING : FOLLOW EACH INSTRUCTION AS SHOWN OR THE JETSON NANO WILL BE BRICKED AN
 
 Search "disk" in the search bar and you can find your device as shown in the Picture. In the example above: /dev/sdb1
 
-NOTE : You will have to format your SSD afterwards, make sure it does not hold important data !
+**NOTE : You will have to format your SSD in ext4 format, make sure it does not hold important data !** <br>
 
 When working with NVME SSD your device name should look like this: /dev/nvme0n1p1<br>
 The ending "p1" stands for partition one. In the following steps **you must remove the partition information from the device path**. See the following example:<br>
@@ -53,5 +53,5 @@ Insatlling cuda
 
 Trying turtlebot3
 
-https://jfrog.com/connect/post/installing-cuda-on-nvidia-jetson-nano/
+https://jfrog.com/connect/post/installing-cuda-on-nvidia-jetson-nano/ <br>
 https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
