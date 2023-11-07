@@ -1,5 +1,3 @@
-**Still in the works**
-
 In this session we are going to learn how to boot the Jetson Nano from an M.2 M key SSD. As you know, the eMMC of the Jetson Nano only has 15Gb of storage available, which is very tiny for developping. In order to have more space on the Jetson Nano, I will be equipping it with a 500Gb SSD. This guide describes how to set up your system to boot from an M.2 SSD.<br>
 
 This guide is intended for experienced users only.
@@ -45,13 +43,6 @@ Modify the following line : APPEND ${cbootargs} quiet root=**<YOUR_STORAGE_DEVIC
 You should see : **<YOUR_STORAGE_DEVICE>** Mounted on /
 
 
-
-
-SSD on boot and running
-
-Insatlling cuda
-
-Trying turtlebot3
-
+About CUDA (not needed in this tutorial, but good to start Jetson Inference):
 https://jfrog.com/connect/post/installing-cuda-on-nvidia-jetson-nano/ <br>
 https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
