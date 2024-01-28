@@ -1,14 +1,11 @@
-I will walk you through how to set a communication between ROS2 and Arduino. I used ROS2 Foxy with Arduino Portenta H7.
+I will walk you through how to set a communication between ROS2 and Arduino. I used ROS2 Foxy with an Arduino Portenta H7, Arduino Nano RP2040 Connect and a Raspberry Pi Pico. Go to [this repo](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy) for more information.<br>
 
-**Important Note**: I will be using **micro-ROS** for this tutorial. Thus, this will only be compatible with few boards, as shown below :
+**Important Note**: This will only be compatible with few boards, among of which the Arduino Portenta H7, Arduino Nano RP2040 Connect and the Raspberry Pi Pico. For the full list of compatible devices, refer to the repository above.
 
-Image
+Explanation:
+In ROS there is a library that enables us to send and receive message from and to a microcontroller, which is **rosserial**. ROS2, on the other hand, can be equipped with a library that is still recent, but can enable us to do the same thing as on ROS. It is called **micro-ROS**, this tool will help us achieve what we can do on ROS, like communnicating an Arduino board to a ROS2 PC.
 
-
-Explanation
-
-
-Code :
+Code:
 ```C
 #include <micro_ros_arduino.h>
 
