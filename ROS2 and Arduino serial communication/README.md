@@ -5,6 +5,8 @@ I will walk you through how to set a communication between ROS2 and Arduino. I u
 Explanation:
 In ROS there is a library that enables us to send and receive message from and to a microcontroller, which is **rosserial**. ROS2, on the other hand, can be equipped with a library that is still recent, but can enable us to do the same thing as on ROS. It is called **micro-ROS**, this tool will help us achieve what we can do on ROS, like communnicating an Arduino board to a ROS2 PC.
 
+In this example we will be running the code for the ultrasonic sensors, we will be following a 2-step process. First we will install the required library, which is **micro-ros**, then we will move the micro ros library to Arduino libraries and upload the code to the board.
+
 ## First step: Installing micro-ros
 
 ### Building
