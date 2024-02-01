@@ -79,6 +79,13 @@ After this, you are all good to go. Run the micro ros Agent: `ros2 run micro_ros
 
 ![Image 2](image-1.png)
 
+- Open another tab from the terminal
+- Enter this: `source /opt/ros/$ROS_DISTRO/setup.bash  && export ROS_DOMAIN_ID=0 && ros2 topic list`
+- Then you should see a topic named: "ultrasonics_publisher"
+- Type: `ros2 topic echo /ultrasonics_publisher` and you should see the final result:
+
+![Image 3](image-2.png)
+
 
 Arduino code for ultrasonic sensors:
 ```C
