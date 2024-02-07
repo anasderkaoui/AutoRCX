@@ -70,8 +70,10 @@ Now download [the micro-ros-arduino repository](https://github.com/micro-ROS/mic
 If you cannot upload a code to the microcontroller, make sure that you gave **permission to the port** by running:
 `sudo chmod a+rw /dev/ttyACM0`, your device might be on another port (/dev/ttyUSB0, /dev/ttyUSB1 ...), verify that on the Arduino IDE where you selected your board.
 
-**If you are using a new Arduino Nano RP2040 Connect, you should run the "post_installation" file before uploading a sketch to it, or else it would display an error**:
-- Open the terminal and run: `cd ~/.arduino15/packages/arduino/hardware/mbed_nano/4.0.10 && sudo ./post_install.sh`
+**If you are using a new Arduino Nano RP2040 Connect, you should run the "post_installation" file before uploading a sketch to it, or else it would display an error**:<br>
+Open the terminal and run: 
+- `cd ~/.arduino15/packages/arduino/hardware/mbed_nano/` then if you type `ls` you will see probably a folder or multiple folders named with versions, choose the latest version and go to it: `cd <version>`
+- `sudo ./post_install.sh`
 
 **If you are using an Arduino Portenta, make sure to [update the firmware and WIFI firmware](https://support.arduino.cc/hc/en-us/articles/4403365234322-Update-Wi-Fi-firmware-on-Portenta-H7-boards)**
 
