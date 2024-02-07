@@ -88,5 +88,5 @@ After this, you are all good to go. Run the micro ros Agent: `ros2 run micro_ros
 
 ![Image 3](image-2.png)
 
-[Arduino code for ultrasonic sensors]() **using Wi-Fi/UDP (wireless communication)**, if you want to use the same code but through **wired communication** you should modify this line to be:
+[Arduino code for ultrasonic sensors](ROS2 and Arduino wired-wireless communication/ultrasonics_code.ino) **using Wi-Fi/UDP (wireless communication)**, if you want to use the same code but through **wired communication** you should modify this line to be:
 `set_microros_transports()`
