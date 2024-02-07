@@ -39,7 +39,7 @@ ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.sh
 ``` 
 
-Now you might run into an error related "TinyXML2", here is the fix:<br>
+Now you might run into an error related to "TinyXML2", here is the fix:<br>
 - Go to the [TinyXML2 repo](https://github.com/leethomason/tinyxml2) and download the ZIP file under the green "Code" button.
 - Extract the compressed file, rename it to `tinyxml2` and move it to the "Home" directory.
 - Finally run the commands again and it should work properly.<br>
@@ -89,7 +89,7 @@ After this, you are all good to go. Run the micro ros Agent: `ros2 run micro_ros
 ![Image 3](image-2.png)
 
 
-Arduino code for ultrasonic sensors:
+Arduino code for ultrasonic sensors **using USB cable (serial communication)**, if you want to use the same code but through Wi-Fi you should modify this line:
 ```C
 #include <micro_ros_arduino.h>
 
@@ -109,8 +109,8 @@ rcl_allocator_t allocator;
 rcl_node_t node;
 rcl_timer_t timer;
 
-int myTriggerPin = D1;  // Trigger on RangeFinder
-int myEchoPin = D0;     // Echo on Rangefinder  
+int myTriggerPin = 1;  // Trigger, if you use an Arduino Portenta then D1
+int myEchoPin = 0;     // Echo, if you use an Arduino Portenta then D0
 unsigned long myDuration;
 
 #define LED_PIN 13
@@ -143,14 +143,14 @@ void setup() {
   RCCHECK(rclc_support_init(&support, 0, NULL, &allocator));
 
   // create node
-  RCCHECK(rclc_node_init_default(&node, "micro_ros_arduino_node", "", &support));
+  RCCHECK(rclc_node_init_default(&node, "ultrasonics_node", "", &support));
 
   // create publisher
   RCCHECK(rclc_publisher_init_default(
     &publisher,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-    "micro_ros_arduino_node_publisher"));
+    "ultrasonics_publisher"));
 
   // create timer,
   const unsigned int timer_timeout = 1000;
