@@ -7,6 +7,8 @@ In ROS there is a library that enables us to send and receive message from and t
 
 In this example we will be running the code for the ultrasonic sensors, we will be following a 2-step process. First we will install the required library, which is **micro-ros**, then we will move the micro ros library to Arduino libraries and upload the code to the board.
 
+**There will be another example where we are going to publish IMU data in order to visualize MPU6050 on RVIZ2 using ROS 2 Foxy !**
+
 ## First step: Installing micro-ros
 
 ### Building
