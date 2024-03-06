@@ -9,5 +9,5 @@ The setup I used was:
 - Ubuntu 22.04
 - ROS 2 Humble
 
-Keywords: IMU, MPU6050, TF, base_footprint, ROS 2, RVIZ2.
-The code was fine-tuned for this use case. Find the original code from the owner's repo [@hiwad-aziz](https://github.com/hiwad-aziz).
+Keywords: IMU, MPU6050, TF, base_footprint, ROS 2, RVIZ2.<br>
+The code was fine-tuned for this use case. Find the original code from the owner's repo [@hiwad-aziz](https://github.com/hiwad-aziz/ros2_mpu6050_driver).
