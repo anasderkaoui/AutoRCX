@@ -15,6 +15,8 @@ Build the package in your workspace:
 
     cd ros2_imu_ws/ && colcon build --packages-select mpu6050driver
 
+You might run into this error (for FOXY users): **tf2_geometry_msgs/tf2_geometry_msgs.hpp not found** ! FIX -> `cd src/ros2_mpu6050_driver/include/mpu6050driver/ && gedit mpu6050driver.h` -> Modify the extension of the include line of tf2_geometry from ".hpp" to ".h"
+
 Source your workspace:
 
     . install/setup.bash
