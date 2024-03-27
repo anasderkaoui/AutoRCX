@@ -67,6 +67,7 @@ There is another SLAM algorithm that is similar to 'slam_gmapping' which is **"s
     
 # FAQ
 - Error of type: "Cannot retrieve YDLIDAR health" while running the LiDAR or any related error -> **Make sure to specify the right port of the LiDAR in the ["yaml" file](https://github.com/MecaBotiX/m3cooper_ros_2/blob/f3ffba6bb7bf43f59c6fc5fd2a0007cef9da1ffb/SLAM/lidar_ws/src/ydlidar_ros2_driver/params/ydlidar.yaml#L3)**.
+- Error of type: "Discarding message because queue is full" on terminal and the output on RVIZ is stuck -> **This indicates that the queue holding the received messages is full. Go to the corresponding package and increase the size of the queue.**
 
 
 ### Keywords: SLAM, Odometry, Lidar, TF, map, base_footprint, IMU.
