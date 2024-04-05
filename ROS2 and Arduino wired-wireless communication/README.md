@@ -1,6 +1,7 @@
 I will walk you through how to set a communication between ROS2 and Arduino or pretty much **any other microcontroller**. I used ROS2 Foxy with an Arduino Portenta H7, Arduino Nano RP2040 Connect and a Raspberry Pi Pico. Go to [this repo](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy) for more information.<br>
 
-**Important Note**: This will only be compatible with few boards, among of which are the Arduino Portenta H7, Arduino Nano RP2040 Connect and the Raspberry Pi Pico. For the full list of compatible devices, refer to the repository above.
+> [!NOTE]
+> This will only be compatible with few boards, among of which are the Arduino Portenta H7, Arduino Nano RP2040 Connect and the Raspberry Pi Pico. For the full list of compatible devices, refer to [this table](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy?tab=readme-ov-file#supported-boards).
 
 Explanation:
 In ROS there is a library that enables us to send and receive message from and to a microcontroller, which is **rosserial**. ROS2, on the other hand, can be equipped with a library that is still recent, but can enable us to do the same thing as on ROS. It is called **micro-ROS**, this tool will help us achieve what we can do on ROS, like communnicating an Arduino board to a ROS2 PC.
@@ -92,3 +93,6 @@ After this, you are all good to go. Run the micro ros Agent: `ros2 run micro_ros
 
 [Arduino code for ultrasonic sensors](https://github.com/anasderkaoui/AutoRCX/blob/main/ROS2%20and%20Arduino%20wired-wireless%20communication/ultrasonics_code.ino) **using Wi-Fi/UDP (wireless communication)**, if you want to use the same code but through **wired communication** you should modify [this line](https://github.com/anasderkaoui/AutoRCX/blob/8624060a2ac2a25c2fc45ead49ba957ea84c4387/ROS2%20and%20Arduino%20wired-wireless%20communication/ultrasonics_code.ino#L82) to be:
 `set_microros_transports()`
+
+> [!TIP]
+> For testing purposes only
