@@ -38,39 +38,40 @@ Configuration code :<br />
 
 To manage communication with the HC-05 module, we use the SoftwareSerial.h library which allows us to create a serial port other than the one used by the USB port. The following code allows you to modify the HC-05 module's parameters (name, PIN code, communication speed (baud rate), etc.) and find information such as the firmware version number.<br />
 
-`#include <SoftwareSerial.h>`<br />
-`#define rxPin 2`<br />
-`#define txPin 3`<br />
-`#define baudrate 38400`<br />
-`String msg;`<br />
-`SoftwareSerial hc05(rxPin ,txPin);`<br />
-`void setup(){`<br />
-` 	pinMode(rxPin,INPUT);`<br />
-` 	pinMode(txPin,OUTPUT);`<br />
- 	
-` 	Serial.begin(9600);`<br />
-` 	Serial.println("ENTER AT Commands:");`<br />
-` 	hc05.begin(baudrate);`<br />
-`}`<br />
-`void loop(){`<br />
-` 			readSerialPort();`<br />
-` 			if(msg!="") hc05.println(msg);`<br />
- 			
-` 			if (hc05.available()>0){`<br />
-` 					Serial.write(hc05.read());`<br />
-` 			}`<br />
-`}`<br />
-`void readSerialPort(){`<br />
-` 	msg="";`<br />
-` while (Serial.available()) {`<br />
-` 		delay(10);`<br />
-` 		if (Serial.available() >0) {`<br />
-` 				char c = Serial.read(); 	//gets one byte from serial buffer`<br />
-` 				msg += c; //makes the string readString`<br />
-` 		}`<br />
-` }`<br />
-`}`<br />
+```
+#include <SoftwareSerial.h>
+#define rxPin 2
+#define txPin 3
+#define baudrate 38400
+String msg;
+SoftwareSerial hc05(rxPin ,txPin);
+void setup(){
+ 	pinMode(rxPin,INPUT);
+ 	pinMode(txPin,OUTPUT);
 
+ 	Serial.begin(9600);
+ 	Serial.println("ENTER AT Commands:");
+ 	hc05.begin(baudrate);
+}
+void loop(){
+ 			readSerialPort();
+ 			if(msg!="") hc05.println(msg);
+
+ 			if (hc05.available()>0){
+ 					Serial.write(hc05.read());
+ 			}
+}
+void readSerialPort(){
+ 	msg="";
+ while (Serial.available()) {
+ 		delay(10);
+ 		if (Serial.available() >0) {
+ 				char c = Serial.read(); 	//gets one byte from serial buffer
+ 				msg += c; //makes the string readString
+ 		}
+ }
+}
+```
 To ensure good communication, make sure to select the correct baudrate in the serial monitor and "new line" (NL) in the communication settings.<br />
 
 Configuration Commands :
