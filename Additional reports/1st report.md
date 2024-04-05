@@ -4,7 +4,7 @@ Here are the steps that I have followed to unbrick it:<br >
 
 1- Follow the steps described in **[this document](https://auvidea.eu/download/Software)**, note that I have an Auvidea carrier board. In this document you will find the **step by step guide to reflash the jetson nano**.<br >
 
-2- You may encounter some problems as I did. If so, here are the problems to the problems I had while flashing the card:<br >
+2- You may encounter some problems as I did. If so, here are some solutions:<br >
    - ERROR 8 : The card did not successfuly boot into recovery mode. You will have to check connection between the jumpers used and the card.<br >
    - ERROR 1 : It has something to do with system cache. All you need to do is restart the laptop you are using to flash the card and change the cable connecting the jetson nano to the laptop.<br >
 
