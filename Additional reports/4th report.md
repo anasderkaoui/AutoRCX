@@ -34,7 +34,7 @@ The ending "p1" stands for partition one. In the following steps **you must remo
 - Switch boot device to SSD
 You need to change your root target in exlinux.conf to the SSD. This is necessary so that the Operating system knows where to find the system files.<br>
 Open exlinux.conf to change the root path: `sudo nano /boot/exlinux/exlinux.conf`<br>
-Modify the following line : `APPEND ${cbootargs} quiet root=**<YOUR_STORAGE_DEVICE>** rw rootwait rootfstype=ext4 console=ttyTCU0,115200n8 console=tty0 fbcon=map:0 net.ifnames=0`
+Modify the following line : `APPEND ${cbootargs} quiet root=<YOUR_STORAGE_DEVICE> rw rootwait rootfstype=ext4 console=ttyTCU0,115200n8 console=tty0 fbcon=map:0 net.ifnames=0`
 
 - After a reboot your system will start from the SSD !<br>
   
