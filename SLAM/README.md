@@ -13,7 +13,7 @@ ROS 2 Drivers for the:
 
 
 
-# Side SLAM configuration
+# SLAM configuration
 This package is used to perform Simultanuous Localization and Mapping (SLAM).<br>
 Each sub-package contains a more detailed documentation for dependency installation.<br>
 Here, you will find:
@@ -29,8 +29,9 @@ Here, you will find:
 - Launch it separately: `sudo chmod +777 /dev/i2c-* && ros2 run mpu6050_driver mpu6050_driver_node`
 
 -> IMU Model 2: **BNO055**
+- This IMU, unlike the previous one, has integrated calculations. This means that Euler Angles and Quaternions are already calculated by the IMU and we only need the driver that will display the ouput.
 - In order to use this IMU, make sure to connect it to the raspberry Pi4 just like the previous IMU. This type of connection is for I2C communication.
-- In order to this IMU for another computer using the I2C to USB converter, make sure to connect RX->SDA, TX->SCL, Vin->Vcc, Gnd->Gnd and **connect the 3V pin to the PS1 pin**:
+- In order to use this IMU with another computer using the I2C to USB (TTL USB) converter, make sure to connect RX➜SDA, TX➜SCL, Vin➜Vcc, Gnd➜Gnd and **connect the 3V pin to the PS1 pin**:
   <p align="center">
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/fbe41cb9-2cef-43d6-9675-0626d6e7d087">
 - [This is the ros2 driver](https://github.com/flynneva/bno055.git) for it.
