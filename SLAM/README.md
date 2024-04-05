@@ -49,7 +49,7 @@ Here, you will find:
 - Launch it separately: `sudo chmod +777 /dev/ttyUSB* && ros2 launch ydlidar_driver ydlidar_launch_view.py`
 
 > [!NOTE]
->**Make sure, after launching these packages and before launching the SLAM, that you have this Transform (tf) tree: `odom -> base_footprint -> (lidar_frame and imu_link)`**. A transform tree represents the tree of the frames of each electronic component of the robot. The frame of the wheels is called "odom", the frame of the robot (reference frame) is called either "base_footprint" or "base_link". The only difference between these two nominations is just that a part of the ROS community chooses one name and the other part chooses the other name. The frame of the IMU is called "imu_link" and finally the frame of the LiDAR is called "lidar_frame" and can also be "laser_frame". You can check the active tree by running: `ros2 run tf2_tools view_frames.py`
+>**Make sure, after launching these packages and before launching the SLAM, that you have this Transform (tf) tree: `odom ➜ base_footprint ➜ (lidar_frame and imu_link)`**. A transform tree represents the tree of the frames of each electronic component of the robot. The frame of the wheels is called "odom", the frame of the robot (reference frame) is called either "base_footprint" or "base_link". The only difference between these two nominations is just that a part of the ROS community chooses one name and the other part chooses the other name. The frame of the IMU is called "imu_link" and finally the frame of the LiDAR is called "lidar_frame" and can also be "laser_frame". You can check the active tree by running: `ros2 run tf2_tools view_frames.py`
 <p align="center">
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/08b7b794-b21f-4cc5-bfd9-b6e23134bc5b">
 
@@ -60,16 +60,16 @@ Here, you will find:
 
 There is another SLAM algorithm that is similar to 'slam_gmapping' which is **"slam_toolbox"**. It has more features than the other one, but "slam_toolbox" updates the map **only when odometry data has changed (robot has moved), unlike "slam_gmapping" which updates the map continuously**.
 - To install "slam_toolbox": `sudo apt update && sudo apt install ros-$ROS_DISTRO-slam-toolbox`
-- Launch it separately: `ros2 launch slam_toolbox online_sync_launch.py` -> There are other options, "ros2 launch slam_toolbox" and double-tap on the TAB key to see them.
+- Launch it separately: `ros2 launch slam_toolbox online_sync_launch.py` ➜ There are other options, "ros2 launch slam_toolbox" and double-tap on the TAB key to see them.
 
-**RVIZ output**: Now, in order to visualize the map generated, open RVIZ by running `rviz2`, in the "Displays" pannel -> "Add" -> "by topic" and then select "map".
+**RVIZ output**: Now, in order to visualize the map generated, open RVIZ by running `rviz2`, in the "Displays" pannel ➜ "Add" ➜ "by topic" and then select "map".
 <p align="center">
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/d626502a-a16f-4877-a7f8-5cfbff3ae2dc">
     
 # FAQ
-- Error of type: "Cannot retrieve YDLIDAR health" while running the LiDAR or any related error -> **Make sure to specify the right port of the LiDAR in the ["yaml" file](https://github.com/MecaBotiX/m3cooper_ros_2/blob/f3ffba6bb7bf43f59c6fc5fd2a0007cef9da1ffb/SLAM/lidar_ws/src/ydlidar_ros2_driver/params/ydlidar.yaml#L3)**.
-- Error of type: "Discarding message because queue is full" on terminal and the output on RVIZ is stuck -> **This indicates that the queue holding the received messages is full. Go to the corresponding package and increase the size of the queue.**
+- Error of type: "Cannot retrieve YDLIDAR health" while running the LiDAR or any related error ➜ **Make sure to specify the right port of the LiDAR in the ["yaml" file](https://github.com/MecaBotiX/m3cooper_ros_2/blob/f3ffba6bb7bf43f59c6fc5fd2a0007cef9da1ffb/SLAM/lidar_ws/src/ydlidar_ros2_driver/params/ydlidar.yaml#L3)**.
+- Error of type: "Discarding message because queue is full" on terminal and the output on RVIZ is stuck ➜ **This indicates that the queue holding the received messages is full. Go to the corresponding package and increase the size of the queue.**
 
 
 ### Keywords: SLAM, Odometry, Lidar, TF, map, base_footprint, IMU.
-*: Different models were tested but not all of them.
+*Different models were tested but not all of them.
