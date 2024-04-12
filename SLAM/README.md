@@ -30,8 +30,8 @@ Here, you will find:
 
 -> IMU Model 2: **BNO055**
 - This IMU, unlike the previous one, has integrated calculations. This means that Euler Angles and Quaternions are already calculated by the IMU and we only need the driver that will display the ouput.
-- In order to use this IMU, make sure to connect it to the raspberry Pi4 just like the previous IMU. This type of connection is for I2C communication.
-- In order to use this IMU with another computer using the I2C to USB (TTL USB) converter, make sure to connect RX➜SDA, TX➜SCL, Vin➜Vcc, Gnd➜Gnd and **connect the 3V pin to the PS1 pin**:
+- In order to use this IMU, make sure to connect it to the raspberry Pi4 just like the previous IMU. This type of connection is for **I2C communication**.
+- To use this IMU with a computer via **USB communication** (using the I2C to USB (TTL USB) converter), make sure to connect RX➜SDA, TX➜SCL, Vin➜Vcc, Gnd➜Gnd and **connect the 3V pin to the PS1 pin**:
   <p align="center">
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/fbe41cb9-2cef-43d6-9675-0626d6e7d087">
 - [This is the ros2 driver](https://github.com/flynneva/bno055.git) for it.
@@ -69,7 +69,7 @@ There is another SLAM algorithm that is similar to 'slam_gmapping' which is **"s
 # FAQ
 - Error of type: "Cannot retrieve YDLIDAR health" while running the LiDAR or any related error ➜ **Make sure to specify the right port of the LiDAR in the ["yaml" file](https://github.com/MecaBotiX/m3cooper_ros_2/blob/f3ffba6bb7bf43f59c6fc5fd2a0007cef9da1ffb/SLAM/lidar_ws/src/ydlidar_ros2_driver/params/ydlidar.yaml#L3)**.
 - Error of type: "Discarding message because queue is full" on terminal and the output on RVIZ is stuck ➜ **This indicates that the queue holding the received messages is full. Go to the corresponding package and increase the size of the queue.**
-
+- Map overlapping problem ➜ Make sure the LiDAR is placed on a stable support and is not vibrating or shaking or making sudden moves and rotations. The LiAR should be moving very smoothly and slowly in order for the SLAM algorithm to generate a smooth single map.
 
 ### Keywords: SLAM, Odometry, Lidar, TF, map, base_footprint, IMU.
 *Different models were tested but not all of them.
