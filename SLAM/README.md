@@ -55,7 +55,7 @@ Here, you will find:
 
 **SLAM folder**: "slam_gmapping", clone it directly from [this link](https://github.com/Project-MANAS/slam_gmapping)<br>
 - This is the package that allows to perform SLAM. In order for it to work, you have to have the following nodes already running: 'odom' from the robot and 'scan' from the lidar.
-- Before building it, make sure to change ["base_link"](https://github.com/Project-MANAS/slam_gmapping/blob/3c3de50c071d2c64ffe516e1ed84a574fc447b97/slam_gmapping/src/slam_gmapping.cpp#L62) to "base_footprint".
+- Before building it, make sure to change ["base_link"](https://github.com/Project-MANAS/slam_gmapping/blob/3c3de50c071d2c64ffe516e1ed84a574fc447b97/slam_gmapping/src/slam_gmapping.cpp#L62) to "base_footprint" if you will use the packages described above.
 - Launch it separatly: `ros2 launch slam_gmapping slam_gmapping.launch.py`
 
 There is another SLAM algorithm that is similar to 'slam_gmapping' which is **"slam_toolbox"**. It has more features than the other one, but "slam_toolbox" updates the map **only when odometry data has changed (robot has moved), unlike "slam_gmapping" which updates the map continuously**.
