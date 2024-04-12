@@ -1,6 +1,7 @@
 This is a ROS 2 package to communicate and show the MPU6050 IMU output on RVIZ2 using I2C interface. The sensor is calibrated on node startup (sensor needs to be on a plane with z-axis up and should not be moved during calibration). Calibration can be turned off in the parameters (.yaml) file. The output is an IMU ROS message and the quaternion part is being calculated in order to show Roll and Pitch angles, Yaw is an approximate value and not the absolute value.
 
-A transform tree represents the tree of the frames of each electronic component of the robot. The frame of the robot (reference frame) is called either "base_footprint" or "base_link". The only difference between these two nominations is just that a part of the ROS community chooses one name and the other part chooses the other name. The frame of the IMU is called "imu_link". You can check the active tree by running: `ros2 run tf2_tools view_frames.py`
+> [!IMPORTANT]
+> **Transform tree explanation** <br> A transform tree represents the tree of the frames of each electronic component of the robot. The frame of the robot (reference frame) is called either "base_footprint" or "base_link". The only difference between these two nominations is just that a part of the ROS community chooses one name and the other part chooses the other name. The frame of the IMU is called "imu_link". You can check the active tree by running: `ros2 run tf2_tools view_frames.py`
 RVIZ2 needs the transform tree in order to know which is the base of reference and which frame is to be translated or rotated with respect to that base reference.
 
 ### Dependencies (should be installed to build and run the package)
