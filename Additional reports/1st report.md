@@ -2,7 +2,7 @@ After the final report from the previous sessions, you may have seen that I bric
 Today, I succeeded at reflashing it and bringing it back to its normal state.
 Here are the steps that I have followed to unbrick it:<br >
 
-1- Follow the steps described in **[this document](https://auvidea.eu/download/Software)**, note that I have an Auvidea carrier board. In this document you will find the **step by step guide to reflash the jetson nano**. An internet connection is required to falsh the card.<br >
+1- Follow the steps described in **[this document](https://auvidea.eu/download/Software)**, note that I have an Auvidea carrier board. In this document you will find the **step by step guide to reflash the jetson nano**. An internet connection is required to flash the card.<br >
 
 2- You may encounter some problems as I did. If so, here are some solutions:<br >
    - ERROR 8 : The card did not successfuly boot into recovery mode. You will have to check connection between the jumpers used and the card.<br >
