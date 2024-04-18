@@ -16,7 +16,11 @@ ROS 2 Drivers for the:
 # SLAM configuration
 This package is used to perform Simultanuous Localization and Mapping (SLAM).<br>
 Each sub-package contains a more detailed documentation for dependency installation.<br>
-Here, you will find:
+
+### Minimum requirements:
+SLAM requires at least "odometry" and "laser scan" data in order to run. "odometry" can be obtained from wheel encoders or position sensors and "laser scans" can be obtained typically from a LiDAR.
+
+Here, you will find the:
 
 **IMU folder**: "imu_ws"<br>
 -> IMU Model 1: **MPU6050**
