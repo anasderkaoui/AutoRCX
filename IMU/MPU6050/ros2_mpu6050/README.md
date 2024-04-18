@@ -40,7 +40,7 @@ Visualize the IMU on RVIZ2:
 
   ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/f3e9c253-009c-4423-beef-10ecd6c586b9)
 
-- Now, always on the left pannel select "*imu_link*" in the "*Fixed Frame*" tab.<br>
+- Now, always on the left pannel select "*base_link*" in the "*Fixed Frame*" tab.<br>
 - Next, click on the "*Imu*" tab and in the tab in front of "*Topic*", double click and choose "*imu_link*".<br>
 ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/f2b62bca-8e71-43b4-ae0e-7a8fe7f36b7c)<br>
 - Now you should be able to visualize the IMU without a problem.
