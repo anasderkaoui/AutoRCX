@@ -1,5 +1,9 @@
 In this session we are going to learn how to boot the Jetson Nano from an M.2 M key SSD. As you know, the eMMC of the Jetson Nano only has 15Gb of storage available, which is very tiny for developping. In order to have more space on the Jetson Nano, I will be equipping it with a 500Gb SSD. This guide describes how to set up your system to boot from an M.2 SSD.<br>
 
+There are two methods the first one is the more complex and the second one is the easier and more straightforward. **Both methods have been tested and work correctly !**<br>
+
+## 1st Method:
+
 This guide is intended for experienced users only.
 
 First step : Insert the SSD in the M.2 slot on the Jetson Nano and screw it in place.<br>
@@ -42,7 +46,23 @@ Modify the following line : `APPEND ${cbootargs} quiet root=<YOUR_STORAGE_DEVICE
 ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/200a7fda-b2ed-43d3-a9d4-2480c9b44f43)<br>
 You should see : **<YOUR_STORAGE_DEVICE>** Mounted on /
 
+## 2nd Method:
 
+- Ready up your storage device (weather it be a USB, SD card, SSD, Hard Drive...) <br>
+- Format it using the "Format" option in the "Disks" application on the Jetson Nano <br>
+![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/f07d0288-139d-4609-bfe1-fee7217debca)
+![image2](https://github.com/anasderkaoui/AutoRCX/assets/115218309/bf8dae60-09b8-45dc-9602-05985d6ca901)
+- Add a partition to the drive by clicking on the "Plus" sign, and then choose Ext4 format
+- After that you should see the device's partition name <br> In this case it is called : **/dev/sda1** <br>
+![image4](https://github.com/anasderkaoui/AutoRCX/assets/115218309/47309926-aafd-4f6e-a1d2-771a7444e3d4)
+- Locate the partition newly created on the left bar (usually at the end) and open it in order to mount that partition (if not done automatically)
+![image3](https://github.com/anasderkaoui/AutoRCX/assets/115218309/258d0d67-6b98-4c54-8b75-f22c76c640bf)
+- Clone this repository to your main directory (or any other directory of your choice): `git clone https://github.com/JetsonHacksNano/bootFromUSB.git`
+- Go to that repository (you should be at "bootFromUSB") and run : `./copyRootToUSB.sh -p /dev/"your storage device's partition name"` (for example `./copyRootToUSB.sh -p /dev/sda1`)
+- 
+
+  
+  
 About CUDA (not needed in this tutorial, but good to start Jetson Inference):
 https://jfrog.com/connect/post/installing-cuda-on-nvidia-jetson-nano/ <br>
 https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
