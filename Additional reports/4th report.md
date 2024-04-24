@@ -5,7 +5,7 @@ There are two methods that you can follow, the first one is more complex and the
 
 ## 1st Method:
 
-This guide is intended for experienced users only. Skip to the [2nd Method](https://github.com/anasderkaoui/AutoRCX/edit/main/Additional%20reports/4th%20report.md#2nd-method-easiest) for an easier approach.
+This guide is intended for experienced users only. Skip to the [2nd Method](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/4th%20report.md#2nd-method-easiest) for an easier approach.
 
 First step : Insert the SSD in the M.2 slot on the Jetson Nano and screw it in place.<br>
 
