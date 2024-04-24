@@ -46,7 +46,7 @@ Modify the following line : `APPEND ${cbootargs} quiet root=<YOUR_STORAGE_DEVICE
 ![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/200a7fda-b2ed-43d3-a9d4-2480c9b44f43)<br>
 You should see : **<YOUR_STORAGE_DEVICE>** Mounted on /
 
-## 2nd Method:
+## 2nd Method (Easiest):
 
 - Ready up your storage device (weather it be a USB, SD card, SSD, Hard Drive...) <br>
 - Format it using the "Format" option in the "Disks" application on the Jetson Nano <br>
@@ -57,12 +57,17 @@ You should see : **<YOUR_STORAGE_DEVICE>** Mounted on /
 ![image4](https://github.com/anasderkaoui/AutoRCX/assets/115218309/47309926-aafd-4f6e-a1d2-771a7444e3d4)
 - Locate the partition newly created on the left bar (usually at the end) and open it in order to mount that partition (if not done automatically)
 ![image3](https://github.com/anasderkaoui/AutoRCX/assets/115218309/258d0d67-6b98-4c54-8b75-f22c76c640bf)
-- Clone this repository to your main directory (or any other directory of your choice): `git clone https://github.com/JetsonHacksNano/bootFromUSB.git`
-- Go to that repository (you should be at "bootFromUSB") and run : `./copyRootToUSB.sh -p /dev/"your storage device's partition name"` (for example `./copyRootToUSB.sh -p /dev/sda1`)
-- 
+- Open a terminal and clone this repository to your main directory (or any other directory of your choice): `git clone https://github.com/JetsonHacksNano/bootFromUSB.git`
+- Go to that repository (you should be at "bootFromUSB") and run : `./copyRootToUSB.sh -p /dev/"your storage device's partition name"` (for example `./copyRootToUSB.sh -p /dev/sda1`). This will take a while.
+- Now go to your storage device, open the "boot" folder, then "extlinux", open a terminal and run : `sudo cp extlinux.conf extlinux.conf.original`
+- Now run : `sudo gedit extlinux.conf`
+- A window should open in order to edit the file. Copy the main paragraph and change the LABEL's name to any other name besides "primary" <br>
+![image](https://github.com/anasderkaoui/AutoRCX/assets/115218309/c26f8a6a-ff04-4b59-9c92-a8a5a087ba84)
+- In the line that starts with "APPEND", modify the "/dev/mmcblk0p1" to be the one according to your storage device (for example "/dev/sda1" or "/dev/mmcblk1p1")
+- (You can skip this step if you want it is not very important) You can be more specific and replace this part of the same line "root=/dev/mmcblk0p1" with "root=PARTUUID=<device's PARTUUID>". In order to get the device's PARTUUID, run this command : `sudo blkid` and then search for the PARTUUID of your device's partition.
+- Now we are going to do the same thing with the storage of the Jetson Nano. Open a terminal and run : `cd ~/boot/extlinux/extlinux.conf && sudo cp extlinux.conf extlinux.conf.original && sudo gedit extlinux.conf`
 
-  
-  
+
 About CUDA (not needed in this tutorial, but good to start Jetson Inference):
 https://jfrog.com/connect/post/installing-cuda-on-nvidia-jetson-nano/ <br>
 https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
