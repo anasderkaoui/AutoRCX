@@ -5,6 +5,7 @@ This is a complete tutorial to do Simultanuous Localization and Mapping using:
 
 >[!NOTE]
 >The SLAM methods used in this tutorial can work with any other hardware as long as there are the important elements described in this document.
+>The IMU is not required to do SLAM, but it will help in localizing the robot.
 
 The SLAM algorithms (**slam_toolbox and slam_gmapping**) have been tested on a **Raspberry Pi4, Ubuntu 22.04, ROS 2 Humble** and also on **Ubuntu 20.04, ROS 2 Foxy**.
 
