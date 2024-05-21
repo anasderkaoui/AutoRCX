@@ -3,6 +3,9 @@ This is a complete tutorial to do Simultanuous Localization and Mapping using:
 - MPU6050 IMU
 - DYNAMIXEL MX-106 Servomotor (This can also work for other* servomotors from DYNAMIXEL)
 
+>[!NOTE]
+>The SLAM methods used in this tutorial can work with any other hardware as long as there are the important elements described in this document.
+
 The SLAM algorithms (**slam_toolbox and slam_gmapping**) have been tested on a **Raspberry Pi4, Ubuntu 22.04, ROS 2 Humble** and also on **Ubuntu 20.04, ROS 2 Foxy**.
 
 ## First:
