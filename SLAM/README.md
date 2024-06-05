@@ -61,6 +61,9 @@ Here, you will find the:
 <p align="center">
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/08b7b794-b21f-4cc5-bfd9-b6e23134bc5b">
 
+>[!WARNING]
+>You can set the "odom" tf to be the "base_link" tf and will not need an imu. The movement precedently relying on the imu will now be applied to the frame of the robot, "base_link", thus moving the robot instead of the imu !!! The imu may still be used for more precision ! (Example of hector mapping on the rplidar A1, coming soon)
+
 **SLAM folder**: "slam_gmapping", clone it directly from [this link](https://github.com/Project-MANAS/slam_gmapping)<br>
 - This is the package that allows to perform SLAM. In order for it to work, you have to have the following nodes already running: 'odom' from the robot and 'scan' from the lidar.
 - Before building it, make sure to change ["base_link"](https://github.com/Project-MANAS/slam_gmapping/blob/3c3de50c071d2c64ffe516e1ed84a574fc447b97/slam_gmapping/src/slam_gmapping.cpp#L62) to "base_footprint" if you will use the packages described above.
