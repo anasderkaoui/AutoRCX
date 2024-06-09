@@ -62,7 +62,7 @@ Here, you will find the:
       <img src="https://github.com/MecaBotiX/m3cooper_ros_2/assets/115218309/08b7b794-b21f-4cc5-bfd9-b6e23134bc5b">
 
 >[!WARNING]
->You can set the "odom" tf to be the "base_link" tf and will not need an imu. The movement precedently relying on the imu will now be applied to the frame of the robot, "base_link", thus moving the robot instead of the imu !!! The imu may still be used for more precision ! (Example of hector mapping on the rplidar A1, coming soon)
+>You can set the "odom" tf to be the "base_link" tf and will not need odometry. The movement precedently relying on the odometry encoder will now be applied to the frame of the robot, "base_link" !!! The odometry sensor may still be used for more precision ! (Example of hector mapping on the rplidar A1, coming soon). In this example, we will need to tweak the parameters of either slam algorithms so that they work without the need for odometry (will work on it when possible).
 
 **SLAM folder**: "slam_gmapping", clone it directly from [this link](https://github.com/Project-MANAS/slam_gmapping)<br>
 - This is the package that allows to perform SLAM. In order for it to work, you have to have the following nodes already running: 'odom' from the robot and 'scan' from the lidar.
@@ -83,4 +83,4 @@ There is another SLAM algorithm that is similar to 'slam_gmapping' which is **"s
 - Map overlapping problem ➜ Make sure the LiDAR is placed on a stable support and is not vibrating or shaking or making sudden moves and rotations. The LiAR should be moving very smoothly and slowly in order for the SLAM algorithm to generate a smooth single map.
 
 ### Keywords: SLAM, Odometry, Lidar, TF, map, base_footprint, IMU.
-*Different models were tested but not all of them.
+*Various models were tested, but not all of them.
