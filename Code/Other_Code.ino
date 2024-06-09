@@ -55,7 +55,7 @@ void handle_cmd_vel(const geometry_msgs::Twist& cmd_vel) {
   analogWrite(PWM, motorSpeed);
 
   // Servo control
-  int angle = map(cmd_vel.angular.z, -1, 1, 0, 180);
+  int angle = map(cmd_vel.angular.z, -1, 1, 20, 90); // Left = 20 == -1 in ros, Right = 90 == 1 in ros
   servo1.write(angle);
 }
 
