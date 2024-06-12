@@ -83,3 +83,90 @@ Launch file:
   </node>
 </launch>
 ```
+CMkaeFile:
+```
+cmake_minimum_required(VERSION 2.8.3)
+project(your_package)
+
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  geometry_msgs
+  sensor_msgs
+  nav_msgs
+  tf
+  move_base
+  amcl
+  map_server
+  costmap_2d
+  base_local_planner
+)
+
+catkin_package(
+  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs sensor_msgs nav_msgs tf move_base amcl map_server costmap_2d base_local_planner
+)
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(DIRECTORY config
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(DIRECTORY maps
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+```
+
+xml file:
+```
+<?xml version="1.0"?>
+<package format="2">
+  <name>your_package</name>
+  <version>0.0.0</version>
+  <description>The your_package package</description>
+
+  <maintainer email="your_email@example.com">your_name</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>move_base</build_depend>
+  <build_depend>amcl</build_depend>
+  <build_depend>map_server</build_depend>
+  <build_depend>costmap_2d</build_depend>
+  <build_depend>base_local_planner</build_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>costmap_2d</exec_depend>
+  <exec_depend>base_local_planner</exec_depend>
+
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>
+
+```
