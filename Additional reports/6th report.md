@@ -5,8 +5,53 @@ The first step is to setup our ROS environment. In oder to do that follow these 
 1- 
 
 
+global_costmap_params.yaml:
+```
+global_costmap:
+  global_frame: "map"
+  robot_base_frame: "base_link"
+  update_frequency: 1.0
+  publish_frequency: 0.5
+  transform_tolerance: 0.5
+  static_map: true
 
+  width: 10.0
+  height: 10.0
+  resolution: 0.05
+  origin_x: 0.0
+  origin_y: 0.0
+  rolling_window: false
 
+  plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  footprint: [[-0.20, -0.09], [-0.20, 0.09], [0.20, 0.09], [0.20, -0.09]]  # Approx. 40cm x 18cm
+  footprint_padding: 0.01  # Extra padding around the footprint for safety
+```
+
+local_costmap_params.yaml:
+```
+local_costmap:
+  global_frame: "odom"
+  robot_base_frame: "base_link"
+  update_frequency: 5.0
+  publish_frequency: 2.0
+  transform_tolerance: 0.5
+  rolling_window: true
+
+  width: 3.0
+  height: 3.0
+  resolution: 0.05
+
+  plugins:
+    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  footprint: [[-0.20, -0.09], [-0.20, 0.09], [0.20, 0.09], [0.20, -0.09]]  # Approx. 40cm x 18cm
+  footprint_padding: 0.01  # Extra padding around the footprint for safety
+```
 
 base_local_planner_params.yaml :
 ```
@@ -21,7 +66,6 @@ TrajectoryPlannerROS:
   yaw_goal_tolerance: 0.1
   latch_xy_goal_tolerance: true
 
-  # Trajectory scoring parameters
   sim_time: 1.0
   sim_granularity: 0.025
   vx_samples: 6
@@ -31,10 +75,12 @@ TrajectoryPlannerROS:
   occdist_scale: 0.01
   forward_point_distance: 0.325
 
-  # Oscillation prevention
   oscillation_reset_dist: 0.05
   escape_reset_dist: 0.10
   escape_reset_theta: 0.10
+
+  footprint: [[-0.20, -0.09], [-0.20, 0.09], [0.20, 0.09], [0.20, -0.09]]  # Approx. 40cm x 18cm
+  footprint_padding: 0.01  # Extra padding around the footprint for safety
 ```
 
 amcl_params.yaml:
