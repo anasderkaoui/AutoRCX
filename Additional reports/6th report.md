@@ -216,3 +216,21 @@ xml file:
 </package>
 
 ```
+
+URDF or XACRO:
+```
+<robot name="rc_car">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.40 0.18 0.1"/>  # Approx. 40cm x 18cm x 10cm height
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Define wheels and other components if necessary -->
+</robot>
+```
