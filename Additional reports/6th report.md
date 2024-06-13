@@ -2,8 +2,15 @@ In this report, we will see how can we use the lidar in order to do some SLAM.
 
 The first step is to setup our ROS environment. In oder to do that follow these simple steps:
 
-1- 
+1- `source /opt/ros/$ROS_DISTRO/setup.bash`
+2- Packages setup:
 
+- LiDAR package
+- Hector mapping (SLAM) package
+- Navigation package
+- In my case I was using an Arduino UNO that controls the servo motor and the DC motor of my autonomous RC car. I had to configure other packages:
+  - rosserial. Command to initialize communication: `rosserial `
+  - Arduino code and test code.
 
 global_costmap_params.yaml:
 ```
