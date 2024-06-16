@@ -113,30 +113,7 @@ amcl:
   odom_model_type: "diff"
 ```
 
-Launch file:
-```
-<launch>
-  <!-- Map Server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find your_package)/maps/my_map.yaml" />
-
-  <!-- AMCL -->
-  <node name="amcl" pkg="amcl" type="amcl" output="screen">
-    <param name="odom_frame_id" value="odom"/>
-    <param name="base_frame_id" value="base_link"/>
-    <param name="global_frame_id" value="map"/>
-    <param name="odom_model_type" value="diff"/>
-    <rosparam file="$(find your_package)/config/amcl_params.yaml" command="load"/>
-  </node>
-
-  <!-- Move Base -->
-  <node name="move_base" pkg="move_base" type="move_base" output="screen">
-    <rosparam file="$(find your_package)/config/global_costmap_params.yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find your_package)/config/local_costmap_params.yaml" command="load" ns="local_costmap"/>
-    <rosparam file="$(find your_package)/config/base_local_planner_params.yaml" command="load"/>
-  </node>
-</launch>
-```
-CMkaeFile:
+CMakeFile:
 ```
 cmake_minimum_required(VERSION 2.8.3)
 project(your_package)
@@ -224,20 +201,216 @@ xml file:
 
 ```
 
-URDF or XACRO:
+Car's URDF or XACRO:
 ```
+<?xml version="1.0"?>
 <robot name="rc_car">
+
+  <!-- Car base link -->
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="0.40 0.18 0.1"/>  # Approx. 40cm x 18cm x 10cm height
+        <box size="0.40 0.19 0.15"/>
       </geometry>
       <material name="grey">
-        <color rgba="0.5 0.5 0.5 1.0"/>
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.40 0.19 0.15"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- Front left wheel -->
+  <link name="front_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
   </link>
 
-  <!-- Define wheels and other components if necessary -->
+  <!-- Front right wheel -->
+  <link name="front_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Rear left wheel -->
+  <link name="rear_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Rear right wheel -->
+  <link name="rear_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- LiDAR sensor -->
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.02"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joints -->
+  <!-- Front left wheel joint -->
+  <joint name="front_left_wheel_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left_wheel"/>
+    <origin xyz="0.15 0.09 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="10"/>
+  </joint>
+
+  <!-- Front right wheel joint -->
+  <joint name="front_right_wheel_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_right_wheel"/>
+    <origin xyz="0.15 -0.09 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="10"/>
+  </joint>
+
+  <!-- Rear left wheel joint -->
+  <joint name="rear_left_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel"/>
+    <origin xyz="-0.15 0.09 -0.075" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear right wheel joint -->
+  <joint name="rear_right_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel"/>
+    <origin xyz="-0.15 -0.09 -0.075" rpy="0 0 0"/>
+  </joint>
+
+  <!-- LiDAR joint -->
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0 0 0.20" rpy="0 0 0"/>
+  </joint>
+
 </robot>
+```
+
+RVIZ config file, can also be generated automatically just by saving the config before exiting RVIZ:
+```
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Class: ""rviz::VisualizationManager""
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Robot Description: robot_description
+    - Class: rviz/Map
+      Name: Global Costmap
+      Topic: /move_base/global_costmap/costmap
+      Alpha: 0.7
+    - Class: rviz/Map
+      Name: Local Costmap
+      Topic: /move_base/local_costmap/costmap
+      Alpha: 0.7
+    - Class: rviz/LaserScan
+      Name: LaserScan
+      Topic: /scan
+    - Class: rviz/TF
+      Name: TF
+    - Class: rviz/PoseArray
+      Name: ParticleCloud
+      Topic: /particlecloud
+    - Class: rviz/Path
+      Name: GlobalPlan
+      Topic: /move_base/GlobalPlanner/plan
+  Fixed Frame: map
+  Value: "RViz Config"
+
+Views:
+  - Class: rviz/Orbit
+    Name: Orbit
+    Value: "Orbit View"
+```
+
+Launch file:
+```
+<launch>
+  <!-- Load the URDF -->
+  <param name="robot_description" command="cat $(find your_package)/urdf/rc_car.urdf"/>
+
+  <!-- Hector Mapping -->
+  <node name="hector_mapping" pkg="hector_mapping" type="hector_mapping" output="screen"/>
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find your_package)/maps/map.yaml"/>
+
+  <!-- AMCL node -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <param name="use_map_topic" value="true"/>
+    <param name="odom_frame_id" value="map"/>
+    <param name="base_frame_id" value="base_link"/>
+    <param name="global_frame_id" value="map"/>
+    <param name="laser_model_type" value="likelihood_field"/>
+    <param name="odom_model_type" value="diff"/>
+    <param name="update_min_d" value="0.2"/>
+    <param name="update_min_a" value="0.2"/>
+    <param name="min_particles" value="100"/>
+    <param name="max_particles" value="500"/>
+    <param name="kld_err" value="0.05"/>
+    <param name="resample_interval" value="2"/>
+    <param name="transform_tolerance" value="0.5"/>
+  </node>
+
+  <!-- Static transform for laser -->
+  <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.1 0 0 0 0 0 base_link laser 100"/>
+
+  <!-- Move base -->
+  <include file="$(find your_navigation_package)/launch/move_base.launch"/>
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find your_package)/rviz/your_config.rviz"/>
+</launch>
+
 ```
