@@ -5,6 +5,9 @@ The first step is to setup our ROS environment. In oder to do that follow these 
 1- `source /opt/ros/$ROS_DISTRO/setup.bash`
 2- Packages setup:
 
+The mistake I was doing is running SLAM along navigation which is not right because two subscribers to map are present and the navigation stack doesn't like it!!!!
+The right thing to do is to publish a static transform publisher from base_link to laser. And the "map" to "base_link" frame will be published automatically by the map server from the previously save dmap !!
+
 - LiDAR package
 - Hector mapping (SLAM) package
 - Navigation package
