@@ -4,3 +4,4 @@ Some of the topics discussed here are :
 - Access Jetson Nano via [remote desktop using XRDP or VNC](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/1st%20report.md)
 - Using Lidar to [perform SLAM as well as autonomous navigation](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md)
 - [ssh problem fix host key](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/5th%20report.md) while conecting the Jetson Nano board
+- [Navigation setup and test](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md) of the AutoRCX
