@@ -3,7 +3,7 @@
 ## Hardware part:
 
 - To use this IMU with a raspberry pi4, make sure to connect it just like [the previous IMU](https://github.com/anasderkaoui/AutoRCX/tree/main/SLAM). This type of connection is for **I2C communication**.
-- In order to use this IMU with a computer using **USB (UART communication)**, you will need the I2C to USB converter like [the one in the following image](https://www.amazon.fr/DSD-TECH-Adaptateur-FT232RL-Compatible/dp/B07BBPX8B8?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A1SUSVKN2N7NX6):
+- In order to use this IMU with a computer using **USB (UART communication)**, you will need the I2C to USB converter like [the one in the following image](https://www.amazon.fr/DSD-TECH-Adaptateur-FT232RL-Compatible/dp/B07BBPX8B8?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A1SUSVKN2N7NX6) ([backup link](https://www.iot-store.com.au/collections/iot-networking-comms/products/industrial-usb-to-ttl-converter-ft232rl)):
   <p align="center">
       <img src="https://github.com/anasderkaoui/AutoRCX/assets/115218309/c2cf3ae7-0289-4dc6-82d9-1b4b7736cd48">
 - Make sure to connect RX ➜ SDA, TX ➜ SCL, Vin ➜ Vcc, Gnd ➜ Gnd and **connect the 3V pin to the PS1 pin, both present on the IMU itself**:
