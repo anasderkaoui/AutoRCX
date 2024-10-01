@@ -10,3 +10,4 @@ As of today, the 01/10/2024, I will concentrate on creating a simulation of the 
 
 UPDATE:
 
+I succeded at getting a first look at the car visualization on RVIZ. However, there still some changes to do: The wheels are twisted and the front one are not connected yet, they can rotate independent than each other !
