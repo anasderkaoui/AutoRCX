@@ -10,4 +10,4 @@ As of today, the 01/10/2024, I will concentrate on creating a simulation of the 
 
 UPDATE:
 
-I succeded at getting a first look at the car visualization on RVIZ. However, there still some changes to do: The wheels can rotate but independent of each other, I don't know if this is really a problem !
+I succeded at getting a first look at the car visualization on RVIZ. However, there still some changes to do: The lidar is in the air, not connected to the body of the car !
