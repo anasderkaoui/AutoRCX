@@ -8,9 +8,7 @@ As of today, the 25/10/2024, I will concentrate on seeing the root of the very s
 
 UPDATE:
 
-I am working on adding the a script that will subscribe to the published topics by the ps4 controller and translate them to the simulation.
+I have figured out the voltage supply problem. The battery cells I have right now do not provide enough power and most importantly amperage for the car components (jetson and dc motor especially) to work properlly. I will have to order a bigger battery with bigger C's and higher voltage (probably 11V).
 
-I am also working on the SLAM part with a fusion of the robot simulation.
-
-I have successfully tested the robot model in a real-time SLAM and I could clearly see the robot model move the car moves in real life ! Although I still have to adjust some parameters (the wheels don't steer and also I think all the wheel aren't turning, just translating the model). I also have adjusted the origin of the model with real life (the model is below the generated map)!
+I also received a first version of the IMU MPU6500 and will try to hook it up to the card and download its necessary packages.
 
