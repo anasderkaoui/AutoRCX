@@ -2,7 +2,7 @@ In this session I have reached this level in my project:
 
 The car can be controlled wirelessly with a PS4 controller, it can steer and go back and forth well. However one problem is that, if a lot of instruction are sent, it takes time to do them and will do them entirely even with a big delay. This is very probably dur to the code size that is imported to the Arduino R3 board. I remember when uploading the code that I had a warning telling me that the code uses almost 90% of the card's capacity which can lead to some problems
 
-As of today, the 25/10/2024, I will concentrate on getting the MPU9052 IMU to work with ROS, then I will try the autonomous navigation with the previous packages that I had created last year.
+As of today, the 04/11/2024, I will concentrate on getting the MPU9052 IMU to work with ROS, then I will try the autonomous navigation with the previous packages that I had created last year.
 
 UPDATE:
 
