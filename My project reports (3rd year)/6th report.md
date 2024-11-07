@@ -2,7 +2,7 @@ In this session I have reached this level in my project:
 
 I still have the probem where if a lot of instruction are sent, it takes time to do them and will do them entirely even with a big delay. This is very probably dur to the code size that is imported to the Arduino R3 board. I remember when uploading the code that I had a warning telling me that the code uses almost 90% of the card's capacity which can lead to some problems.
 
-As of today, the 07/11/2024, I will test the car with a battery (5200mAH 11.1V 80C) that I have received from a friend.
+As of today, the 06/11/2024, I will test the car with a battery (5200mAH 11.1V 80C) that I have received from a friend.
 
 UPDATE:
 
