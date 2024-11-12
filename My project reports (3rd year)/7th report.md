@@ -7,3 +7,5 @@ As of today, the 12/11/2024, I will try to generate a map and perform the SLAM a
 
 UPDATE:
 
+I had some hard time trying to get the LiDAR to work because I get the error 80008002! which refers to low voltage.
+I had to start the node multiple times in order to get the LiDAR wotking again.
