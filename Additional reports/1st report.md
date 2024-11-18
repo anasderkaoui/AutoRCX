@@ -29,6 +29,9 @@ Eventually, I had to restart the card and the problem was solved !<br >
 
 **As a bonus, I will guide you through two methods, one being more effective than the other, to get the output of your Jetson Nano on your laptop screen without using any external peripherals !**<br >
 
+> [!NOTE]
+> You can buy a **wireless HDMI cable** that will save you all the work that follows!
+
 **1- In the first method we will be using VNC (Virtual Network Computing)** (The least effective method because the output is not very smooth). In this method you will need a monitor, a keyboard and if you want also a mouse.
   - First, after booting up the system, you will need to enter this command line in the terminal:<br >
     `sudo vim /usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml` This command will open up a file and we will add a key to it.
