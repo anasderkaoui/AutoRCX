@@ -19,4 +19,6 @@ I thought it was going to be pretty straightforward to make the car drive autono
 
 2- When I set a goal plan and when the car almost reaches it, it keeps going in that same direction and therefore gets further away from the destination. The order keeps on being published!
 
-3- I have received the new IMU but I did not set it yet.
+3- When the robot is moving, the LiDAR scans are also moving with it, as if the already saved map has no effect on th efact that the scans should be superimposed to the obstacles!
+
+4- I have received the new IMU but I did not set it yet.
