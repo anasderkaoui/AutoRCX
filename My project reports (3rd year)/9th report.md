@@ -16,6 +16,10 @@ I thought it was going to be pretty straightforward to make the car drive autono
 
 1- The problem kinda persists with the LiDAR scans not matching real LiDAR movements. When tweeking the launch file, I found that this has to do with tf orientation. Although I found the parameters to moify, but still I don't get the right output when trying all possible combinations.
 
+2- I found [this](https://robotics.stackexchange.com/questions/100364/lidar-sensing-backwards) and maybe it could help to resolve this issue. Remains to check other forums and community.
+
 3- When the robot is moving, the LiDAR scans are also moving with it, as if the already saved map has no effect on th efact that the scans should be superimposed to the obstacles and stay fixed like that!
 
-4- I have received the new IMU and battery cables but I did not set them yet.
+4- I also found that some URDF gets loaded even if I comment out that part, maybe that would also cause a problem. Also I **have to tweek the parameters in the working URDF and see if this fixes it!**
+
+5- I still did not install the IMU. The new cables for the battery work well as well as the new batteries. **Optimal charging for batteries 11.1V to 11.55V. MAX 12.6V MIN 9.6V** To charge batteries, specify **5.0A as default**.
