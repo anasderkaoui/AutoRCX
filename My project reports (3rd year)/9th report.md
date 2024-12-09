@@ -12,6 +12,8 @@ As of today, the 09/12/2024:
 
 UPDATE:
 
+radians to degrees: 3.142 == 180.01, 1.571 == 90.01
+
 I thought it was going to be pretty straightforward to make the car drive autonomously but I ran into some chalenges that I have to resolve:
 
 1- The problem kinda persists with the LiDAR scans not matching real LiDAR movements. When tweeking the launch file, I found that this has to do with tf orientation. Although I found the parameters to moify, but still I don't get the right output when trying all possible combinations.
