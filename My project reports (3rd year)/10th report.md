@@ -19,6 +19,7 @@ radians to degrees: 3.142 == 180.01, 1.571 == 90.01
 I thought it was going to be pretty straightforward to make the car drive autonomously but I ran into some chalenges that I have to resolve:
 
 1- I have found some new parametrs that I can fiddle with. Tried to put 3.142 on odom tf broadcaster on all 3 slots but nothing changed. I know this problem is non existent when I do the mapping procedure, so I figured out I wil just take a look at the parameters in the hector mapping folder and might there be a solution to this problem!!
+After a lot of param modifications the problem still persists!! See laser tf broadcaster params and hector mapping params!
 
 2- I found [this](https://robotics.stackexchange.com/questions/100364/lidar-sensing-backwards) and [this also](https://robotics.stackexchange.com/questions/21009/ros-laser-scan-rotates-with-the-robot-in-rviz) maybe it could help to resolve this issue. Remains to check other forums and community.
 
