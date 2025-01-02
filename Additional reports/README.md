@@ -5,4 +5,4 @@ Some of the topics discussed here are :
 - Using Lidar to [perform SLAM as well as autonomous navigation](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md)
 - [ssh problem fix host key](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/5th%20report.md) while conecting the Jetson Nano board
 - [Navigation setup and test](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md) of the AutoRCX
-- [Bind USB port with a static name on Linux](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md) so that you don't need to redefine in each launch file which port corresponds to which device.
+- [Bind USB port with a static name on Linux and run sudo commands at each openning of the terminal window/tab](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md).
