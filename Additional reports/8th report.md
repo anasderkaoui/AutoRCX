@@ -175,7 +175,7 @@ void handle_cmd_vel(const geometry_msgs::Twist& cmd_vel) {
   analogWrite(PWM, motorSpeed);
 
   // Servo control
-  int angle = map(cmd_vel.angular.z, -1, 1, 20, 90); // Maximum left is "20" degrees corresponds to -1 in ros, maximum right is "90" degrees corresponds to 1 in ros
+  int angle = map(cmd_vel.angular.z, -1, 1, 20, 90); // Maximum left is "20" degrees corresponds to 1 in ros, maximum right is "90" degrees corresponds to -1 in ros
   //int centered_angle = angle - 90 + 56;
   //servo1.write(constrain(centered_angle, 0, 180));
   servo1.write(angle);
