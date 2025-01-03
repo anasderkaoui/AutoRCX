@@ -8,11 +8,11 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <cmath>
 
-class FakeOdom {
+class FakeOdomAckermann {
 public:
-    FakeOdom() {
+    FakeOdomAckermann() {
         // Initialize ROS node
-        cmd_vel_sub = nh.subscribe("/cmd_vel", 10, &FakeOdom::cmdVelCallback, this);
+        cmd_vel_sub = nh.subscribe("/cmd_vel", 10, &FakeOdomAckermann::cmdVelCallback, this);
         odom_pub = nh.advertise<nav_msgs::Odometry>("/odom", 10);
 
         x = 0.0;
@@ -29,10 +29,15 @@ public:
             double dt = (current_time - last_time).toSec();
             last_time = current_time;
 
-            // Calculate position based on velocities
+            // Apply Ackermann kinematic equations
             double delta_x = linear_velocity * std::cos(theta) * dt;
             double delta_y = linear_velocity * std::sin(theta) * dt;
-            double delta_theta = angular_velocity * dt;
+            double delta_theta = 0.0;
+
+            if (steering_angle != 0.0) {
+                double turning_radius = linear_velocity / std::tan(steering_angle);
+                delta_theta = linear_velocity * dt / turning_radius;
+            }
 
             x += delta_x;
             y += delta_y;
@@ -57,13 +62,13 @@ private:
 
     double x, y, theta; // Robot's pose
     double linear_velocity = 0.0;
-    double angular_velocity = 0.0;
+    double steering_angle = 0.0;
 
     ros::Time last_time;
 
     void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg) {
-        linear_velocity = msg->linear.x; // From DC motor
-        angular_velocity = msg->angular.z; // From servomotor (steering)
+        linear_velocity = msg->linear.x;  // Velocity of the car
+        steering_angle = msg->angular.z; // Steering angle in radians
     }
 
     void publishOdometry(const ros::Time& current_time) {
@@ -81,7 +86,7 @@ private:
 
         // Velocity
         odom.twist.twist.linear.x = linear_velocity;
-        odom.twist.twist.angular.z = angular_velocity;
+        odom.twist.twist.angular.z = linear_velocity * std::tan(steering_angle);
 
         odom_pub.publish(odom);
     }
@@ -103,8 +108,8 @@ private:
 };
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "fake_odom_publisher");
-    FakeOdom fake_odom;
+    ros::init(argc, argv, "fake_odom_ackermann");
+    FakeOdomAckermann fake_odom;
     fake_odom.spin();
     return 0;
 }
