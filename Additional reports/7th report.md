@@ -1,3 +1,6 @@
+OUTTA context: Remains to give car wheels separation for ackermann turn and odom super drift, remains to know about global costmap and abilities, finetune amcl, lidar scans still moving with robot but BIG NEWS car can now be moves autonomously moves autonomously in rviz!!
+
+
 In this report we will address some small issues that arise from time to time and can be solved quickly:
 
 ## First is binding USB port with a static name on Linux to a specific device. We're going to give the example of a LiDAR:
