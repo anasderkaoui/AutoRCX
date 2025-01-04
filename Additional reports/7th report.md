@@ -1,6 +1,9 @@
 In this report we will address some small issues that arise from time to time and can be solved quickly:
 
 ## First is binding USB port with a static name on Linux to a specific device. We're going to give the example of a LiDAR:
+
+To bind a device to a specific port in Ubuntu 18.04 on your Jetson Nano, you can create a persistent udev rule that assigns a consistent device name based on its unique attributes (e.g., serial number, vendor ID, product ID). Here's how to do it:
+
   - <ins>Step 1</ins>: Open a terminal. List the serial devices on your system. You may figure out the serial number of your USB device by disconnecting and connecting it to your system.<br>
     `ls /dev/ttyUSB*`
 
@@ -23,6 +26,11 @@ In this report we will address some small issues that arise from time to time an
      ```
     
     The USB device path of ttyUSB0 is **1-1.3.1**.
+
+    Run the following command to list connected USB devices:
+    udevadm info --query=all --name=/dev/ttyUSB0
+    Replace /dev/ttyUSB0 with the actual device name if different.
+    Look for unique attributes such as "ID_SERIAL", "ID_VENDOR", and "ID_PRODUCT".
     
   - <ins>Step 3</ins>: Edit the USB serial rules on your Linux system.<br>
     Now in my case (Using Jetson Nano) the rules start with 99 instead of 10 like in this example: `sudo nano /etc/udev/rules.d/10-usb-serial.rules`<br>
@@ -34,6 +42,7 @@ In this report we will address some small issues that arise from time to time an
     Add this line at the end of the 99-usb-serial.rules. Change your-device-name to a static name you want to assign.
     
     `SUBSYSTEM=="tty", KERNELS=="1-1.3.1", SYMLINK+="your-device-name"`
+    `SUBSYSTEM=="tty", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SYMLINK+="my_device"`
 
     In my case, I wrote:
     
@@ -47,14 +56,14 @@ In this report we will address some small issues that arise from time to time an
     sudo udevadm trigger
     ```
 
-  - <ins>Step 5</ins>: Verify the changes.
+  - <ins>Step 5</ins>: Verify the changes. Unplug and reconnect your device.
     `ls -l /dev/ttyUSB*`<br>
     The result will look like
     ```
     crw-rw----+ 1 root dialout 188, 6 Jan 11 18:27 /dev/ttyUSB0
     lrwxrwxrwx 1 root root 7 Dec 17 14:17 /dev/USB-LIDAR-> ttyUSB0
     ```
-    Unplug and reconnect your device. It should now appear as `/dev/my_device` (or whatever name you assigned in the SYMLINK).
+    It should now appear as `/dev/my_device` (or whatever name you assigned in the SYMLINK).
 
 ## Now we will see how to run `sudo` commands automatically for only two specific commands when you open a new terminal window or tab without having to retype the password each time.<br>
 > [!IMPORTANT]
