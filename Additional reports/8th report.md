@@ -483,3 +483,5 @@ int main(int argc, char** argv) {
 }
 
 ```
+
+Remains to make a cpp/python file for when the servo and dc motors are atteched directly to the jetson nano card! Maybe will eliminate interference/offset.
