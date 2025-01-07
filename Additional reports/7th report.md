@@ -1,6 +1,3 @@
-OUTTA context: Remains to give car wheels separation for ackermann turn and odom super drift, remains to know about global costmap and abilities, finetune amcl, lidar scans still moving with robot but BIG NEWS car can now be moves autonomously moves autonomously in rviz!!
-
-
 In this report we will address some small issues that arise from time to time and can be solved quickly:
 
 ## First is binding USB port with a static name on Linux to a specific device. We're going to give the example of a LiDAR:
@@ -98,3 +95,10 @@ Here’s how:
    sudo chmod 777 /dev/USB-LIDAR   # add your commands at the end of the file
    ```
    Now you won't be prompted to type in your password anymore.
+
+
+
+
+
+OUTTA context: Remains to give car wheels separation for ackermann turn and odom super drift, remains to know about global costmap and abilities, finetune amcl, lidar scans still moving with robot but BIG NEWS car can now be moves autonomously moves autonomously in rviz!!
+Give full info about car (wheel separation is 1:10 size a common standard that has exact same dimensions along all companies, long/large for ackermann fine tunning) max values front/back & servo motions for global/local/common costmaps.
