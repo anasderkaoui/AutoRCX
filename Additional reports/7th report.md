@@ -101,4 +101,4 @@ Here’s how:
 
 
 OUTTA context: Remains to give car wheels separation for ackermann turn and odom super drift, remains to know about global costmap and abilities, finetune amcl, lidar scans still moving with robot but BIG NEWS car can now be moves autonomously moves autonomously in rviz!!
-Give full info about car (wheel separation is 1:10 size a common standard that has exact same dimensions along all companies, long/large for ackermann fine tunning) max values front/back & servo motions for global/local/common costmaps. IT IS 25,4cm wheel separation from front to back wheels 16,7cm two-wheel separation (all taking from center of wheel/tire) !!
+Give full info about car (wheel separation is 1:10 size a common standard that has exact same dimensions along all companies, long/large for ackermann fine tunning) max values front/back & servo motions for global/local/common costmaps. IT IS 25,4cm wheel separation from front to back wheels 16,7cm two-wheel separation (all taking from center of wheel/tire) !! CAR 47,5cm total length and 20cm total boarder-to-boarder large!
