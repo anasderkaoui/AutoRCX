@@ -17,6 +17,7 @@ Interest in SLAM Filter Sampling to fix map overlapping.
   - rosserial. Command to initialize communication: `rosserial `
   - Arduino code and test code.
 
+In global costmap, no need to define origins, the plugin will define the map uploaded as global one!
 global_costmap_params.yaml:
 ```
 global_costmap:
@@ -30,8 +31,6 @@ global_costmap:
   width: 10.0
   height: 10.0
   resolution: 0.05
-  origin_x: 0.0
-  origin_y: 0.0
   rolling_window: false
 
   plugins:
