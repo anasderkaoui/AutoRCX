@@ -1,3 +1,167 @@
+## ROBOt's URDF description:
+
+```xml
+<?xml version="1.0"?>
+<robot name="rc_car">
+
+<!-- This is the URDF file for the rc car, it works very well, only thing is to take care of lidar-->
+
+  <!-- Car base link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.40 0.19 0.15"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.40 0.19 0.15"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- Front left wheel -->
+  <link name="front_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Front right wheel -->
+  <link name="front_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Rear left wheel -->
+  <link name="rear_left_wheel">
+    <visual>
+<!-- <origin ryp="1.570795 0 0" xyz="0 0 0"/> -->
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Rear right wheel -->
+  <link name="rear_right_wheel">
+    <visual>
+<!-- <origin ryp="1.570795 0 0" xyz="0 0 0"/> -->
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- LiDAR sensor -->
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Intermediate steering links -->
+  <link name="front_left_wheel_steering"/>
+  <link name="front_right_wheel_steering"/>
+
+  <!-- Joints -->
+
+  <!-- Front left wheel steering joint (yaw) -->
+  <joint name="front_left_steering_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left_wheel_steering"/>
+    <origin xyz="0.15 0.09 -0.075" rpy="1.570795 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1.0"/>
+  </joint>
+
+  <!-- Front right wheel steering joint (yaw) -->
+  <joint name="front_right_steering_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_right_wheel_steering"/>
+    <origin xyz="0.15 -0.09 -0.075" rpy="1.570795 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1.0"/>
+    <mimic joint="front_left_steering_joint" multiplier="1.0" offset="0"/> <!-- wheel mimics the other wheel as if they were connected -->
+  </joint>
+
+  <!-- Front left wheel rotation joint (rolling) -->
+  <joint name="front_left_wheel_joint" type="continuous">
+    <parent link="front_left_wheel_steering"/>
+    <child link="front_left_wheel"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Front right wheel rotation joint (rolling) -->
+  <joint name="front_right_wheel_joint" type="continuous">
+    <parent link="front_right_wheel_steering"/>
+    <child link="front_right_wheel"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <mimic joint="front_left_wheel_joint" multiplier="1.0" offset="0"/> <!-- wheel mimics the other wheel as if they were connected -->
+  </joint>
+
+  <!-- Rear left wheel joint (rolls == continuous, fixed == fixed) -->
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel"/>
+    <origin xyz="-0.15 0.09 -0.075" rpy="1.570795 0 0"/>
+    <axis xyz="0 0 1" />
+    <mimic joint="front_left_wheel_joint" multiplier="1.0" offset="0"/> <!-- wheel mimics the other wheel as if they were connected -->
+  </joint>
+
+  <!-- Rear right wheel joint (rolls) -->
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel"/>
+    <origin xyz="-0.15 -0.09 -0.075" rpy="1.570795 0 0"/>
+    <axis xyz="0 0 1" />
+    <mimic joint="rear_left_wheel_joint" multiplier="1.0" offset="0"/> <!-- wheel mimics the other wheel as if they were connected -->
+  </joint>
+
+  <!-- LiDAR joint (fixed) -->
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0 0 0.085" rpy="0 0 0"/>
+  </joint>
+
+</robot>
+
+```
+
+
 Node (to be tested) to synchronize real robot motion to joint states:
 
 ```cpp
