@@ -1,3 +1,5 @@
+# Important info at the end
+
 ## ROBOt's URDF description:
 
 ```xml
@@ -245,4 +247,10 @@ int main(int argc, char** argv) {
 }
 ```
 
+> [!NOTE]
+> The **major fixes** to the autnomous navigation of the AutoRCX are:<br>
+> **1-** The inflation layer activation should be noted in either the "local_costmap" or "common_costmap" do that the robot can detect dynamic obstacles in real time and update its trajectory. See the corrected version HERE*.<br>
+> **2-** Odometry should be peesent or calculated in order for AMCL to calculate and the updatethe translation motion. However this is not enough!<br>
+> **3-** On top of the odometry, there has to be an IMU in order to calculate the rotation and orientation of the robot. Best approach is to fuse odometry and IMU (Kalman filter) to give AMCL a better approximation.<br>
+> **4-** There are some preferred choises for Ackerman (car-like) robots in navigation. Carrot planner as global planner and TEB planner as local planner. Both present under the "move_base" package!<br>
 
