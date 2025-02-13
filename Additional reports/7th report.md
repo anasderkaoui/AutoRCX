@@ -78,7 +78,7 @@ Here’s how:
    ```
 
 2. **Add a rule for your user:**
-   At the bottom of the file, add a line that allows your user to execute the specific commands without a password. Replace `your_username` with your actual username (you can know it by typing **`whoami`** in the terminal) and `/path/to/command` with the full path of the commands in your `.bashrc`.
+   At the bottom of the file, add a line that allows your user to execute the specific commands without a password. Replace `your_username` with your actual username (you can know it by typing **`whoami`** in the terminal) and `/path/to/command` with the full path of the commands (you can check it by typing **`which chmod`** for e.g.) in your `.bashrc`.
 
    For example:<br>
    If you have multiple commands, separate them with commas:<br>
@@ -96,9 +96,35 @@ Here’s how:
    ```
    Now you won't be prompted to type in your password anymore.
 
+### Another example but with bluetooth this time around. We will set it to turn on automatically at each startup.<br>
+> [!Note]
+> This is the safer way to do it, using a service instead of "bashrc" and "visudo" !
 
+1. Create a systemd service file:<br>
+`sudo nano /etc/systemd/system/unblock-bluetooth.service`
 
+3. Add the following content:<br>
+```bash
+[Unit]
+Description=Unblock Bluetooth at Startup
+After=network.target
 
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/rfkill unblock bluetooth
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+3. Enable and start the service:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable unblock-bluetooth.service
+sudo systemctl start unblock-bluetooth.service
+```
+And there you have it, the bluetooth will be enabled at each startup of the card.
 
 OUTTA context: Remains to give car wheels separation for ackermann turn and odom super drift, remains to know about global costmap and abilities, finetune amcl, lidar scans still moving with robot but BIG NEWS car can now be moves autonomously in rviz!!
 Give full info about car (wheel separation is 1:10 size a common standard that has exact same dimensions along all companies, long/large for ackermann fine tunning) max values front/back & servo motions for global/local/common costmaps. IT IS 25,4cm wheel separation from front to back wheels 16,7cm two-wheel separation (all taking from center of wheel/tire) !! CAR 47,5cm total length and 20cm total boarder-to-boarder large!
