@@ -484,4 +484,4 @@ int main(int argc, char** argv) {
 
 ```
 
-Remains to make a cpp/python file for when the servo and dc motors are atteched directly to the jetson nano card! Maybe will eliminate interference/offset.
+Remains to make a cpp/python file for when **the servo and dc motors are attached directly to the jetson nano card!** After testing, this transition will absolutly eliminate interference/offset between command and response that is now present. USB is a very bad connection type to use in ROBOTICS!
