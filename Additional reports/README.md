@@ -8,3 +8,4 @@ Some of the topics discussed here are :
 - [Navigation setup and test](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md) of the AutoRCX
 - [Bind USB port with a static name on Linux](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md) and run sudo commands at each openning of the terminal window/tab. And [enable bluetooth automatically at each startup](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md#another-example-but-with-bluetooth-this-time-around-we-will-set-it-to-turn-on-automatically-at-each-startup)
  - [Autonomous navigation fixes and car dimensions](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/9th%20report.md#autonmous-navigation-fixesrequirements)
+ - All the [autonomous navigation config files](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md)
