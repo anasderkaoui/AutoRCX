@@ -247,11 +247,16 @@ int main(int argc, char** argv) {
 }
 ```
 
+Full info about **car dimensions**: 25,4cm wheel separation from front to back wheels 16,7cm two-wheel separation (all taking from center of wheel/tire) !! CAR 47,5cm total length and 20cm total boarder-to-boarder large!
+
+## Autonmous Navigation Fixes/Requirements
+
 > [!NOTE]
 > The **major fixes** to the autnomous navigation of the AutoRCX are:<br>
-> **1-** The inflation layer activation should be noted in either the "local_costmap" or "common_costmap" do that the robot can detect dynamic obstacles in real time and update its trajectory. See the corrected version HERE*.<br>
-> **2-** Odometry should be peesent or calculated in order for AMCL to calculate and the updatethe translation motion. However this is not enough!<br>
-> **3-** On top of the odometry, there has to be an IMU in order to calculate the rotation and orientation of the robot. Best approach is to fuse odometry and IMU (Kalman filter) to give AMCL a better approximation.<br>
+> **1-** The inflation layer activation should be noted in either the "local_costmap" or "common_costmap" so that the robot can detect dynamic obstacles in real time and update its trajectory. See the corrected version HERE*.<br>
+> **2-** LiDAR scans were moving along with the car because there was **no Odometry topic/data published!!** Odometry should be present or calculated in order for AMCL to calculate and the update the translation motion. However this is not enough!<br>
+> **3-** On top of the odometry, there has to be an IMU in order to calculate the rotation and orientation of the robot. Best approach is to fuse odometry and IMU (Extended Kalman filter) to give AMCL a better approximation. The IMU especially helps correct robot position while rotating.<br>
 > **4-** There are some preferred choises for Ackerman (car-like) robots in navigation. Carrot planner as global planner and TEB planner as local planner. Both present under the "move_base" package!<br>
 
-Lastly, I have noticed a strange behaviour lately, especially while adding the kalman filter node. The EKF publishes a "tf", at the reception of the "IMU" and "odom" nodes, and it probably needs the URFD of the robot in order to publish exactly the position of each component of the robot. I think the issue that I had was related to the fact that I was not publishing the URDF and this explains the weird behavior that I had gotten when I launched the navigation stack. The strange behavior observed: the transforms would appear everywhere and jump all over the map and even outside it, in RVIZ! So since there was no description of the car components, the filter kept giving random places and positions to the transforms. So, the **fix that needs to be made, is to add/uncomment the URDF in the launch file!**
+Lastly, I have noticed a strange behaviour lately, especially while adding the kalman filter node. The EKF publishes a "tf", at the reception of the "IMU" and "odom" nodes, and it needs the URFD of the robot in order to publish exactly the position of each component of the robot.<br>
+I think the issue that I had was related to the fact that I was not publishing the URDF and this explains the weird behavior that I had gotten when I launched the navigation stack. The strange behavior observed: the transforms would appear everywhere and jump all over the map and even outside it, in RVIZ! So since there was no description of the car components, the filter kept giving random places and positions to the transforms. So, the **fix that needs to be made, is to add/uncomment the URDF in the launch file! Assuming it works well and has all the necessary tf**
