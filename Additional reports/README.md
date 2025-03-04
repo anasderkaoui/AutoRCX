@@ -7,3 +7,4 @@ Some of the topics discussed here are :
 - [ssh problem fix host key](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/5th%20report.md) while conecting the Jetson Nano board
 - [Navigation setup and test](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/6th%20report.md) of the AutoRCX
 - [Bind USB port with a static name on Linux](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md) and run sudo commands at each openning of the terminal window/tab. And [enable bluetooth automatically at each startup](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/7th%20report.md#another-example-but-with-bluetooth-this-time-around-we-will-set-it-to-turn-on-automatically-at-each-startup)
+ - [Autonomous navigation fixes and car dimensions](https://github.com/anasderkaoui/AutoRCX/blob/main/Additional%20reports/9th%20report.md#autonmous-navigation-fixesrequirements)
