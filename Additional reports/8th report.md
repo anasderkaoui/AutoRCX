@@ -115,7 +115,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-### Update version:
+### Odom Updated version:
 
 ```cpp
 #include <ros/ros.h>
@@ -418,6 +418,69 @@ int SoundSensorRL() {
   return SoundDistanceRL;
 }
 ```
+
+## Updated version of Arduino code
+
+```
+#include <Servo.h>
+#include <Wire.h>
+#include <VL53L0X.h>
+#include <ros.h>
+#include <geometry_msgs/Twist.h>
+
+// The lag is due to overflow and also bigger distance between transmitter and receiver (bluetooth) wich causes to keep in last state!!
+// Overflow when card receives lot of commands or one prolonged command after another command!
+
+int Dir = 2; // Yellow
+int PWM = 3; // White
+
+int pos = 0;    // variable to store the servo position
+Servo servo1; // Pin 10
+
+ros::NodeHandle nh;
+
+void handle_cmd_vel(const geometry_msgs::Twist& cmd_vel) {
+  // Motor control
+  int motorSpeed = int(abs(cmd_vel.linear.x) * 255);
+  int motorDirection = (cmd_vel.linear.x >= 0) ? HIGH : LOW;
+
+  digitalWrite(Dir, motorDirection);
+  analogWrite(PWM, motorSpeed);
+
+  // Servo control
+  //int angle = map(cmd_vel.angular.z, -1, 1, 20, 90); // Maximum left is "20" degrees corresponds to -1 in ros, maximum right is "90" degrees corresponds to 1 in ros
+  int angle = 20 + (-cmd_vel.angular.z + 1) * (90 - 20) / 2; // in cmd_vel -1 is right! and 1 is left!!
+  //int centered_angle = angle - 90 + 56;
+  //servo1.write(constrain(centered_angle, 0, 180));
+  servo1.write(angle);
+}
+
+ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel", handle_cmd_vel);
+
+void setup() {
+  // Motor
+  pinMode(PWM, OUTPUT);
+  pinMode(Dir, OUTPUT);
+
+  // Servo
+  servo1.attach(4);
+  servo1.write(56); // wheels back to the center
+
+  // Lidar sensor
+  Serial.begin(9600); // Serial Communication is starting with 9600 of baudrate speed
+
+  // Initialize ROS node handle
+  nh.initNode();
+  nh.subscribe(sub);
+}
+
+void loop() {
+
+  nh.spinOnce();
+  delay(10);
+}
+```
+
 ## Corresponding pub/sub to control the car with a wireless controller:
 
 ```cpp
