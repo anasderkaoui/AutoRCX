@@ -8,18 +8,18 @@ The first step is to setup our ROS environment. In oder to do that follow these 
 The mistake I was doing is running SLAM along navigation which is not right because two subscribers to map are present and the navigation stack doesn't like it!!!!
 The right thing to do is to publish a static transform publisher from base_link to laser. And the "map" to "base_link" frame will be published automatically by the map server from the previously saved map !! Now when solicited, the warning "could not get robot pose" seems to be gone!
 
-Interest in SLAM Filter Sampling to fix map overlapping.
+To fix map overlapping, stabilize LiDAR and avoid sharp turns.
 
 - LiDAR package
 - Hector mapping (SLAM) package
 - Navigation package
 - In my case I was using an Arduino UNO that controls the servo motor and the DC motor of my autonomous RC car. I had to configure other packages:
-  - rosserial. Command to initialize communication: `rosserial `
+  - rosserial. Command to initialize communication: `rosserial`
   - Arduino code and test code.
 
 In global costmap, no need to define origins, the plugin will define the map uploaded as global one!
 global_costmap_params.yaml:
-```
+```yaml
 global_costmap:
   global_frame: "map"
   robot_base_frame: "base_link"
@@ -40,6 +40,21 @@ global_costmap:
 
   footprint: [[-0.20, -0.09], [-0.20, 0.09], [0.20, 0.09], [0.20, -0.09]]  # Approx. 40cm x 18cm
   footprint_padding: 0.01  # Extra padding around the footprint for safety
+```
+
+new global costmap:
+```yaml
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_link
+  rolling_window: false
+  track_unknown_space: true
+  update_frequency: 5.0
+  static_map: true
+
+#  plugins:
+#   - {name: static_layer, type: "costmap_2d::StaticLayer"}
+#   - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
 ```
 
 local_costmap_params.yaml:
@@ -64,34 +79,118 @@ local_costmap:
   footprint_padding: 0.01  # Extra padding around the footprint for safety
 ```
 
-base_local_planner_params.yaml :
+
+new local costmap:
+```yaml
+local_costmap:
+  global_frame: odom
+  robot_base_frame: base_link
+  rolling_window: true
+  update_frequency: 2.0
+  publish_frequency: 2.0
+  static_map: false
+
+  width: 3.0 # influences velocity if too small, the velocity will be also smaller !
+  height: 3.0 # influences velocity if too small, the velocity will be also smaller !
+  resolution: 0.05
+
+#  plugins:
+#    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+#    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
 ```
+
+common costmap params:
+```yaml
+footprint: [[0.2375, 0.1], [0.2375, -0.1], [-0.2375, -0.1], [-0.2375, 0.1]]
+footprint_padding: 0.01
+
+# Sensor Settings
+obstacle_range: 6.0
+raytrace_range: 6.0
+inflation_radius: 0.15 # the surroundings of obstacle
+lethal_cost_threshold: 100
+map_type: costmap
+
+# Robot Characteristics
+min_obstacle_height: 0.1
+max_obstacle_height: 2.0
+
+# Obstacle Layer Settings
+obstacle_layer:
+  enabled: true
+  combination_method: 1
+  observation_sources: laser_scan
+  laser_scan: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+# Inflation Layer Settings
+inflation_layer: # activate inflation layer (pink local map)
+  enabled: true
+```
+
+base global planner:
+```yaml
+GlobalPlanner:
+  allow_unknown: false  # Do not plan through unknown space.
+  use_dijkstra: true    # Use Dijkstra's algorithm for pathfinding.
+  use_quadratic: false  # Disable quadratic approximation (only needed for complex terrain).
+  use_grid_path: false  # Generate smoother paths instead of grid-aligned.
+  old_navfn_behavior: false  # Use new behaviors for smoother planning.
+  tolerance: 0.2        # 0.0 No tolerance for goal; robot must reach it exactly.
+  lethal_cost: 100      # Define obstacle threshold (use the same as your costmap).
+  neutral_cost: 50      # Neutral cost for regular cells, if increased robot takes shortest path.
+  cost_factor: 3.0      # Weight of costmap cells in path calculation.
+  orientation_mode: 1   # Align path to preferred orientation (1 = along path direction). if 0 Robot ignores orientation (not suitable for Ackermann robots).
+  default_tolerance: 0.5  # Allow slight deviation in path to make navigation feasible.
+```
+
+base_local_planner_params.yaml :
+```yaml
 TrajectoryPlannerROS:
-  max_vel_x: 0.5
-  min_vel_x: 0.1
-  max_vel_theta: 1.0
-  min_vel_theta: -1.0
-  acc_lim_x: 1.0
-  acc_lim_theta: 1.0
-  xy_goal_tolerance: 0.1
-  yaw_goal_tolerance: 0.1
-  latch_xy_goal_tolerance: true
+  # Robot Configuration Parameters
+  acc_lim_x: 2.5          # Maximum acceleration in the x direction (m/s^2)
+  acc_lim_theta: 0.0      # No rotational acceleration since Ackermann robots can't rotate in place
+  max_vel_x: 2.5          # Maximum linear velocity (m/s)
+  min_vel_x: -1.5         # Allow backward movement
+  max_vel_theta: 0.0      # No rotational velocity
+  min_vel_theta: 0.0      # No rotational velocity
+  min_in_place_vel_theta: 0.0  # No rotation in place
+  holonomic_robot: false  # Ackermann robots are not holonomic
 
-  sim_time: 1.0
-  sim_granularity: 0.025
-  vx_samples: 6
-  vtheta_samples: 20
-  path_distance_bias: 32.0
-  goal_distance_bias: 24.0
-  occdist_scale: 0.01
-  forward_point_distance: 0.325
+  # Trajectory Parameters
+  sim_time: 2.0           # Time to forward-simulate trajectories (seconds)
+  sim_granularity: 0.05   # Distance between points on a trajectory (meters)
+  angular_sim_granularity: 0.05 # Ignored for Ackermann robots
+  vx_samples: 20           # Number of samples for velocities in x
+  vy_samples: 0           # Set to 0 for non-holonomic robots
+  vtheta_samples: 1       # No theta samples for Ackermann robots
 
-  oscillation_reset_dist: 0.05
-  escape_reset_dist: 0.10
-  escape_reset_theta: 0.10
+  # Goal Tolerances
+  xy_goal_tolerance: 0.2  # Distance tolerance to the goal (meters)
+  yaw_goal_tolerance: 0.1 # Yaw tolerance to the goal (radians)
+  latch_xy_goal_tolerance: false  # Do not latch goal tolerance
 
-  footprint: [[-0.20, -0.09], [-0.20, 0.09], [0.20, 0.09], [0.20, -0.09]]  # Approx. 40cm x 18cm
-  footprint_padding: 0.01  # Extra padding around the footprint for safety
+  # Path Scoring
+  path_distance_bias: 32.0  # Prefer paths that follow the global plan
+  goal_distance_bias: 24.0  # Prefer paths that reach the goal
+  occdist_scale: 0.01       # Scaling factor for obstacle cost
+
+  # Forward Simulation Parameters
+  heading_lookahead: 0.1    # was 0.3 Distance to look ahead in trajectory for heading alignment
+  dwa: false                # Disable Dynamic Window Approach; use trajectory rollout
+  meter_scoring: true       # Use scoring robust against costmap resolution changes
+
+  # Obstacle Avoidance Parameters
+  max_obstacle_distance: 2.0 # Maximum distance to consider obstacles
+  inflation_radius: 0.4      # Robot’s inflation radius for costmap
+  
+  # Kinematic Constraints
+  max_trans_vel: 1.0         # Maximum translational velocity (m/s)
+  min_trans_vel: 0.05        # Minimum translational velocity (m/s)
+  backup_vel: -0.1           # Backup velocity (negative for backward motion)
+
+  # Additional Configuration
+  yaw_goal_tolerance: 0.2    # Allow some yaw tolerance at the goal
+  prune_plan: true           # Prune the global plan as the robot moves
 ```
 
 amcl_params.yaml:
@@ -379,42 +478,101 @@ Views:
 ```
 
 Launch file:
-```
+```xml
+<?xml version="1.0"?>
+
 <launch>
+
+<!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/anas/navicar_2/src/naviconfig/maps/my_map_now.yaml"/>
+
+  <!-- Enable arduino connection -->
+  <node name="rosserial_python" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" value="/dev/USB-ARDUINO"/>
+    <param name="baud" value="57600"/>
+  </node>
+
   <!-- Load the URDF -->
-  <param name="robot_description" command="cat $(find your_package)/urdf/rc_car.urdf"/>
+  <!-- <param name="robot_description" command="cat /home/anas/navicar_2/src/naviconfig/urdf/car_working.urdf"/> -->
+  <!-- <param name="use_sim_time" value="false" /> -->
 
-  <!-- Hector Mapping -->
-  <node name="hector_mapping" pkg="hector_mapping" type="hector_mapping" output="screen"/>
-
-  <!-- Map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find your_package)/maps/map.yaml"/>
-
-  <!-- AMCL node -->
-  <node name="amcl" pkg="amcl" type="amcl" output="screen">
-    <param name="use_map_topic" value="true"/>
-    <param name="odom_frame_id" value="map"/>
-    <param name="base_frame_id" value="base_link"/>
-    <param name="global_frame_id" value="map"/>
-    <param name="laser_model_type" value="likelihood_field"/>
-    <param name="odom_model_type" value="diff"/>
-    <param name="update_min_d" value="0.2"/>
-    <param name="update_min_a" value="0.2"/>
-    <param name="min_particles" value="100"/>
-    <param name="max_particles" value="500"/>
-    <param name="kld_err" value="0.05"/>
-    <param name="resample_interval" value="2"/>
-    <param name="transform_tolerance" value="0.5"/>
+  <!-- Odometry simulation -->
+  <node pkg="navicar_2_2" type="fake_odom_publisher" name="fake_odom_publisher" output="screen"> 
+  <remap from="odom" to="raw_odom"/>
   </node>
 
   <!-- Static transform for laser -->
-  <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.1 0 0 0 0 0 base_link laser 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0 0 0 0 0 0 base_link laser 100"/>
 
-  <!-- Move base -->
-  <include file="$(find your_navigation_package)/launch/move_base.launch"/>
+<!-- EKF -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" output="screen">
+    <param name="use_sim_time" value="false"/>
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/ekf.yaml" command="load"/>
+    <remap from="odometry/filtered" to="odom"/>
+  </node>
+
+  <!-- AMCL node -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <!-- <param name="use_map_topic" value="true"/> -->
+    <param name="odom_frame_id" value="odom"/>
+    <param name="base_frame_id" value="base_link"/>
+    <param name="global_frame_id" value="map"/>
+    <param name="update_min_d" value="0.1"/>
+    <param name="update_min_a" value="0.1"/>
+    <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha5" value="0.1"/>
+<!--Lowering transform_tolerance value may lead to Expolration Error. Adjust this value according to the processor capacity -->
+      <param name="transform_tolerance" value="0.5" /> 
+      <param name="gui_publish_rate" value="10.0"/> 
+      <param name="laser_max_beams" value="30"/>
+      <param name="min_particles" value="500"/>
+      <param name="max_particles" value="2000"/>
+      <param name="kld_err" value="0.05"/>
+      <param name="kld_z" value="0.99"/>
+      <param name="odom_alpha1" value="0.2"/>
+      <param name="odom_alpha2" value="0.2"/> 
+      <param name="odom_alpha3" value="0.8"/>
+      <param name="odom_alpha4" value="0.2"/>
+      <param name="laser_z_hit" value="0.5"/>
+      <param name="laser_z_short" value="0.05"/>
+      <param name="laser_z_max" value="0.05"/>
+      <param name="laser_z_rand" value="0.5"/>
+      <param name="laser_sigma_hit" value="0.2"/>
+      <param name="laser_lambda_short" value="0.1"/>
+      <param name="laser_lambda_short" value="0.1"/>
+      <param name="laser_model_type" value="likelihood_field"/>
+      <param name="laser_likelihood_max_dist" value="2.0"/>
+      <param name="update_min_d" value="0.1"/>
+      <param name="update_min_a" value="0.2"/>
+      <param name="resample_interval" value="2"/>
+      <param name="recovery_alpha_slow" value="0.0"/>
+      <param name="recovery_alpha_fast" value="0.0"/>
+      <param name="ackermann_steering" value="true"/>
+      <param name="wheelbase" value="0.254"/>
+      <param name="track_width" value="0.167"/>
+  </node>
+
+    <!-- Move base # IMPORTANT: base_local_planner  base local planner can only handle holonomic/differential drive robots and assumes roughly circular shape. Tolerated for car-like robots-->
+
+    <!-- Move Base Node -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <!-- Move Base Core Parameters -->
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/move_base_2.yaml" command="load" />
+
+    <!-- Base Local Planner Parameters -->
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/base_local_planner_2.yaml" command="load" />
+
+    <!-- Global Planner Parameters -->
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/global_planner_2.yaml" command="load" />
+    <!-- Costmap Configuration -->
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/commoncostmap3.yaml" command="load" ns="global_costmap" />
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/commoncostmap3.yaml" command="load" ns="local_costmap" />
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/local_cost_2.yaml" command="load" />
+    <rosparam file="/home/anas/navicar_2/src/naviconfig/config/global_cost_2.yaml" command="load" />
+    
+  </node>
 
   <!-- RViz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find your_package)/rviz/your_config.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d /home/anas/navicar_2/src/naviconfig/rviz/my_config_2.rviz"/>
 </launch>
-
 ```
