@@ -421,7 +421,7 @@ int SoundSensorRL() {
 
 ## Updated version of Arduino code
 
-```
+```c
 #include <Servo.h>
 #include <Wire.h>
 #include <VL53L0X.h>
