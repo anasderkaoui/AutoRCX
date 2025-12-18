@@ -1,0 +1,17 @@
+LICENSE.txt
+README.md
+setup.py
+examples/__init__.py
+examples/hardware_data_ready.py
+examples/simple.py
+lsm9ds1/__init__.py
+lsm9ds1/lsm9ds1.py
+lsm9ds1.egg-info/PKG-INFO
+lsm9ds1.egg-info/SOURCES.txt
+lsm9ds1.egg-info/dependency_links.txt
+lsm9ds1.egg-info/requires.txt
+lsm9ds1.egg-info/top_level.txt
+test/__init__.py
+test/test_ag_status.py
+test/test_driver.py
+test/test_magnetometer_status.py
